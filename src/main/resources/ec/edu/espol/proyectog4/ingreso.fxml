@@ -52,7 +52,7 @@
         </rowConstraints>
          <children>
             <Button fx:id="btnRegistrarse" mnemonicParsing="false" onAction="#registrarse" text="Registrarse" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-            <Button fx:id="btnRegistrarse" mnemonicParsing="false" onAction="#ingresar" text="Ingresar" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Button fx:id="btnIngresar" mnemonicParsing="false" onAction="#ingresar" text="Ingresar" GridPane.columnIndex="2" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </bottom>
