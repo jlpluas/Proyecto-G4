@@ -25,6 +25,8 @@ public class IngresoController{
     private TextField txtfieldUsuario;
     @FXML
     private TextField txtfieldContraseña;
+    @FXML
+    private Button btnIngresar;
 
 
 
