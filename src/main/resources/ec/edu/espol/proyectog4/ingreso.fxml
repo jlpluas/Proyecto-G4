@@ -33,8 +33,8 @@
                   <Font name="Bell MT" size="20.0" />
                </font>
             </Label>
-            <TextField GridPane.columnIndex="2" GridPane.valignment="BOTTOM" />
-            <TextField GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <TextField fx:id="txtfieldUsuario" GridPane.columnIndex="2" GridPane.valignment="BOTTOM" />
+            <TextField fx:id="txtfieldContraseña" GridPane.columnIndex="2" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </center>
@@ -51,8 +51,8 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" text="Registrarse" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" text="Ingresar" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Button fx:id="btnRegistrarse" mnemonicParsing="false" onAction="#registrarse" text="Registrarse" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+            <Button fx:id="btnRegistrarse" mnemonicParsing="false" onAction="#ingresar" text="Ingresar" GridPane.columnIndex="2" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </bottom>

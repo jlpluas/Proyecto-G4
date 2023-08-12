@@ -6,21 +6,34 @@ package ec.edu.espol.proyectog4;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
  *
  * @author P4321
  */
-public class IngresoController implements Initializable {
+public class IngresoController{
 
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+    @FXML
+    private Button btnRegistrarse;
+    @FXML
+    private TextField txtfieldUsuario;
+    @FXML
+    private TextField txtfieldContraseña;
+
+
+
+    @FXML
+    private void registrarse(ActionEvent event) {
+    }
+
+    @FXML
+    private void ingresar(ActionEvent event) {
+    }
     
 }
