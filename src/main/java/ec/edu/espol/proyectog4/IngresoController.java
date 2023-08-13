@@ -4,6 +4,7 @@
  */
 package ec.edu.espol.proyectog4;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -34,7 +35,8 @@ public class IngresoController{
 
 
     @FXML
-    private void registrarse(ActionEvent event) {
+    private void registrarse(ActionEvent event) throws IOException {
+        App.setRoot("registros");
     }
 
     @FXML

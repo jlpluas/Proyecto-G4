@@ -52,8 +52,14 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="btnRegistrarse" mnemonicParsing="false" onAction="#registrarse" text="Registrarse" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-            <Button fx:id="btnIngresar" mnemonicParsing="false" onAction="#ingresar" text="Ingresar" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Button fx:id="btnRegistrarse" mnemonicParsing="false" onAction="#registrarse" text="Registrarse" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Bell MT" size="20.0" />
+               </font></Button>
+            <Button fx:id="btnIngresar" mnemonicParsing="false" onAction="#ingresar" text="Ingresar" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Bell MT" size="20.0" />
+               </font></Button>
          </children>
       </GridPane>
    </bottom>
