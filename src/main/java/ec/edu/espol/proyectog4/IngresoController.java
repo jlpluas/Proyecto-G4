@@ -34,6 +34,7 @@ public class IngresoController{
 
     @FXML
     private void ingresar(ActionEvent event) {
+        String usuario = txtfieldUsuario.getText();
     }
     
 }
