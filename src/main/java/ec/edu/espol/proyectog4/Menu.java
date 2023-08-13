@@ -20,7 +20,6 @@ public class Menu {
 //                           4. Regresar""");
         Scanner sc= new Scanner(System.in);
         int miniopcion= Integer.parseInt(sc.nextLine()); 
-        
         while(miniopcion != 4) {
             if(miniopcion == 1)
                 Vendedor.nextVendedor(sc,"Vendedores.txt");
@@ -33,6 +32,7 @@ public class Menu {
 //                           2. Registrar un nuevo vehiculo
 //                           3. Ver ofertas realizadas
 //                           4. Regresar""");
+            sc.nextLine();
             miniopcion=Integer.parseInt(sc.nextLine());
         }
     }
@@ -41,16 +41,27 @@ public class Menu {
 //        System.out.println("""
 //                           1. Registrar un nuevo comprador
 //                           2. Ofertar por Vehiculo
-//                           3. Regresar""");
+//                           3. Eliminar oferta
+//                           4. Regresar""");
         Scanner sc= new Scanner(System.in);
-        int opcion= Integer.parseInt(sc.nextLine());
-        
-        if (opcion==1){
-            Comprador.nextComprador(sc,"Compradores.txt");
+        int miniopcion= Integer.parseInt(sc.nextLine());
+        while(miniopcion != 4) {
+            if (miniopcion==1){
+                Comprador.nextComprador(sc,"Compradores.txt");
+            }
+            else if (miniopcion==2){
+                Comprador.ofertarVehiculo(sc,"Vehiculos.txt", "Vendedores.txt");
+            }
+            else if (miniopcion ==3){
+                Comprador.eliminarOferta(sc,"Vendedores.txt","Vehiculos.txt","Ofertas.txt");
+            }
+//            System.out.println("""
+//                           1. Registrar un nuevo comprador
+//                           2. Ofertar por Vehiculo
+//                           3. Eliminar oferta
+//                           4. Regresar""");
+            sc.nextLine();
+            miniopcion=Integer.parseInt(sc.nextLine());
         }
-        if (opcion==2){
-            Comprador.ofertarVehiculo(sc,"Vehiculos.txt", "Vendedores.txt");
-        }
-        
     }
 }

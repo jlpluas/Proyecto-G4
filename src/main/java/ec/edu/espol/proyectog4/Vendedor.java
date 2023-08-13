@@ -170,17 +170,22 @@ public class Vendedor {
             String correo = sc.next();
             ArrayList<String> correos_dados = readFileCorreos(nfileVendores);
             if(!correos_dados.isEmpty()){
-                for (String c : correos_dados) {
-                    if (c.equals(correo)) {
+                boolean correoin = false; 
+                for (int i = 0;i<correos_dados.size();i++) {
+                    if (correos_dados.get(i).equals(correo)) {
                     System.out.println("Correo ya registrado");
-                    } else {
-                    Vendedor v = new Vendedor(id_vendedor,n,ape,org,correo,password);
-                    v.saveArchivo(nfileVendores);
+                    correoin = true;
                     }
+                }
+                if(correoin == false){
+                    Vendedor v = new Vendedor(id_vendedor, n, ape, org, correo, password);
+                    v.saveArchivo(nfileVendores);
+                    System.out.println("Vendedor registrado");
                 }
             }else{
                 Vendedor v = new Vendedor(id_vendedor,n,ape,org,correo,password);
                 v.saveArchivo(nfileVendores);
+                System.out.println("Primer vendedor registrado!");
             }                
         } catch (NoSuchAlgorithmException e) {
             System.out.println("Exception thrown for incorrect algorithm: " + e.getMessage());
@@ -226,15 +231,15 @@ public class Vendedor {
         return null;
     }
     
-    public static boolean validarCredenciales(String correo, String cv, String nfilevendedores){
+    public static boolean validarCredenciales(String correo, String cv, String nfile){
         Boolean correoin = false;
-        ArrayList<String> correos_dados = readFileCorreos(nfilevendedores);
+        ArrayList<String> correos_dados = readFileCorreos(nfile);
         for (String c : correos_dados) {
             if(c.equals(correo)==true)
                 correoin = true; 
         }
         Boolean clavein = false;
-        ArrayList<String> claves = readFileClaves(nfilevendedores);
+        ArrayList<String> claves = readFileClaves(nfile);
         try{
             String password = toHexString(getSHA(cv));
             for (String c : claves) {
@@ -331,9 +336,9 @@ public class Vendedor {
             }
             
             if (resp==0){
-                Util.enviarCorreo(correoI,"Oferta Aceptada","La oferta que ha realizado ha sido aceptada por el vendedor del vehiculo",correo,cv);
+                //Util.enviarCorreo(correoI,"Oferta Aceptada","La oferta que ha realizado ha sido aceptada por el vendedor del vehiculo");
                 int pos = Vehiculo.searchPosByPlaca(nfileVeh, placaIn);
-                Util.eliminarInformacion("Vehiculos.txt", (pos+1));
+                Util.eliminarInformacion("Vehiculos.txt", pos);
             }
             else if(resp==1){
                 if(i>=0 && i<vehSel.size()-1)
@@ -344,8 +349,7 @@ public class Vendedor {
             }
             else if(resp==2)
                 i--;
-            else if(resp==9)
-                x+=1;
+           
         }
     }
 }

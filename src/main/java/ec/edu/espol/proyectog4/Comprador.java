@@ -4,6 +4,7 @@
  */
 package ec.edu.espol.proyectog4;
 
+import ec.edu.espol.util.Util;
 import static ec.edu.espol.util.Util.getSHA;
 import static ec.edu.espol.util.Util.nextID;
 import static ec.edu.espol.util.Util.toHexString;
@@ -86,7 +87,7 @@ public class Comprador {
             while(sc.hasNextLine()){
                 String line = sc.nextLine();
                 String[] tokens = line.split("\\|");
-                String correo_elec = tokens[3];
+                String correo_elec = tokens[4];
                 correos.add(correo_elec);
             }
         }catch(Exception e){
@@ -101,13 +102,34 @@ public class Comprador {
             while(sc.hasNextLine()){
                 String line = sc.nextLine();
                 String[] tokens = line.split("\\|");
-                String correo_elec = tokens[4];
+                String correo_elec = tokens[5];
                 claves.add(correo_elec);
             }
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
         return claves;
+    }
+    
+    public static boolean validarCredenciales(String correo, String cv, String nfile){
+        Boolean correoin = false;
+        ArrayList<String> correos_dados = readFileCorreos(nfile);
+        for (String c : correos_dados) {
+            if(c.equals(correo)==true)
+                correoin = true; 
+        }
+        Boolean clavein = false;
+        ArrayList<String> claves = readFileClaves(nfile);
+        try{
+            String password = toHexString(getSHA(cv));
+            for (String c : claves) {
+                if(c.equals(password)==true)
+                    clavein = true;
+            }
+        }catch (NoSuchAlgorithmException e){
+                System.out.println("Exception thrown for incorrect algorithm: " + e.getMessage());
+            }
+        return correoin && clavein;
     }
     
         
@@ -128,13 +150,17 @@ public class Comprador {
             String correo = sc.next();
             ArrayList<String> correos_dados = readFileCorreos(nfile);
             if(!correos_dados.isEmpty()){
+                boolean correoin = false;
                 for (String c : correos_dados) {
                     if (c.equals(correo)) {
                     System.out.println("Correo ya registrado");
-                    } else {
+                    correoin = true;
+                    }
+                }
+                if(correoin == false){
                     Vendedor v = new Vendedor(id_comprador,n,ape,org,correo,password);
                     v.saveArchivo(nfile);
-                    }
+                    System.out.println("Comprador Registrado");
                 }
             }else{
                 Vendedor v = new Vendedor(id_comprador,n,ape,org,correo,password);
@@ -195,14 +221,15 @@ public class Comprador {
     }
     
     
-    
     public static void ofertarVehiculo(Scanner sc, String nfile, String fileVendedores){
         System.out.println("¿Desea ingresar tipo de vehiculo? \n 1.Si \n 2.No :");
-        int resp1=Integer.parseInt(sc.nextLine());
+        int resp1=sc.nextInt();
+        sc.nextLine();
         int tipo=0;
         if (resp1==1){
             System.out.println("Ingrese el tipo de vehiculo por sú numero: \n 1.Moto \n 2.Auto \n 3.Camioneta " );
-            tipo=Integer.parseInt(sc.nextLine());
+            tipo=sc.nextInt();
+            sc.nextLine();
         }
         else{
             tipo=0;
@@ -219,66 +246,78 @@ public class Comprador {
         
         
         System.out.println("¿Desea ingresar el recorrido mínimo del vehiculo? \n 1.Si \n 2.No :");
-        int resp2=Integer.parseInt(sc.nextLine());
+        int resp2=sc.nextInt();
+        sc.nextLine();
         int recorridoMin=0;
         if (resp2==1){
             System.out.println("Ingrese el valor del recorrido mínimo del vehiculo: " );
-            recorridoMin=Integer.parseInt(sc.nextLine());
+            recorridoMin=sc.nextInt();
+            sc.nextLine();
         }
         else{
             recorridoMin=0;
         }    
         
         System.out.println("¿Desea ingresar el recorrido máximo del vehiculo? \n 1.Si \n 2.No :");
-        int resp3=Integer.parseInt(sc.nextLine());
+        int resp3=sc.nextInt();
+        sc.nextLine();
         int recorridoMax=0;
         if (resp3==1){
             System.out.println("Ingrese el valor del recorrido máximo del vehiculo: " );
-            recorridoMax=Integer.parseInt(sc.nextLine());
+            recorridoMax=sc.nextInt();
+            sc.nextLine();
         }
         else{
             recorridoMax=Integer.MAX_VALUE;
         }
         
         System.out.println("¿Desea ingresar el año mínimo del vehiculo? \n 1.Si \n 2.No :");
-        int resp4=Integer.parseInt(sc.nextLine());
+        int resp4=sc.nextInt();
+        sc.nextLine();
         int anioMin=0;
         if (resp4==1){
             System.out.println("Ingrese el año mínimo del vehiculo: " );
-            anioMin=Integer.parseInt(sc.nextLine());
+            anioMin=sc.nextInt();
+            sc.nextLine();
         }
         else{
             anioMin=0;
         }
         
         System.out.println("¿Desea ingresar el año máximo del vehiculo? \n 1.Si \n 2.No :");
-        int resp5= Integer.parseInt(sc.nextLine());
+        int resp5=sc.nextInt();
+        sc.nextLine();
         int anioMax=0;
         if (resp5==1){
             System.out.println("Ingrese el año máximo del vehiculo: " );
-            anioMax= Integer.parseInt(sc.nextLine());
+            anioMax=sc.nextInt();
+            sc.nextLine();
         }
         else{
             anioMax=Integer.MAX_VALUE;
         }
         
         System.out.println("¿Desea ingresar el precio mínimo del vehiculo? \n 1.Si \n 2.No :");
-        int resp6=Integer.parseInt(sc.nextLine());
+        int resp6=sc.nextInt();
+        sc.nextLine();
         int precioMin=0;
         if (resp6==1){
             System.out.println("Ingrese el valor del precio mínimo del vehiculo: " );
-            precioMin=Integer.parseInt(sc.nextLine());
+            precioMin=sc.nextInt();
+            sc.nextLine();
         }
         else{
             precioMin=0;
         }
         
         System.out.println("¿Desea ingresar el precio máximo del vehiculo? \n 1.Si \n 2.No :");
-        int resp7=Integer.parseInt(sc.nextLine());
+        int resp7=sc.nextInt();
+        sc.nextLine();
         int precioMax=0;
         if (resp7==1){
             System.out.println("Ingrese el valor del precio máximo del vehiculo: " );
-            precioMax=Integer.parseInt(sc.nextLine());
+            precioMax=sc.nextInt();
+            sc.nextLine();
         }
         else{
             precioMax=Integer.MAX_VALUE;
@@ -296,23 +335,23 @@ public class Comprador {
             int resp=0;
             if(i==0){
                 System.out.println("Ingrese el número de la opción que desea: \n 1.Realizar oferta \n 2.Ver siguiente vehiculo \n 9.Salir");
-                resp= Integer.parseInt(sc.nextLine());
+                resp=sc.nextInt();
             } 
             else if(i>0 && i<listaSel.size()-1){
                 System.out.println("Ingrese el número de la opción que desea: \n 1.Realizar oferta \n 2.Ver siguiente vehiculo \n 3.Ver anterior vehiculo \n 9.Salir");
-                resp=Integer.parseInt(sc.nextLine());
+                resp=sc.nextInt();
             }
             else if(i==listaSel.size()-1){
                 System.out.println("Ingrese el número de la opción que desea: \n 1.Realizar oferta \n 2.Ver anterior vehiculo \n 9.Salir");
-                resp=Integer.parseInt(sc.nextLine());
+                resp=sc.nextInt();
             }
             ArrayList<Oferta> ofertasVehiculo = new ArrayList<>(); 
             Oferta off;
             if (resp==1){
-                System.out.println("Ingrese su correo: ");
-                String correoIn= sc.nextLine();
                 System.out.println("Ingrese su oferta:");
-                double ofertaIn= Double.parseDouble(sc.nextLine());
+                double ofertaIn=sc.nextDouble();
+                System.out.println("Ingrese su correo: ");
+                String correoIn=sc.nextLine();
                 off=new Oferta(ofertaIn,correoIn,v);
                 Oferta.ofertasVehiculos.add(off);
                 ofertasVehiculo.add(off);
@@ -325,7 +364,7 @@ public class Comprador {
                 i--;
             }
             else if(resp==9){
-                x+=1;
+                x=0;
             }
             else if(resp==2){
                 if(i>=0 && i<listaSel.size()-1)
@@ -336,4 +375,89 @@ public class Comprador {
             }     
         }
     }
+    
+    public static void eliminarOferta(Scanner sc, String nfilevendedores, String nfileVeh, String nfileO){
+        System.out.println("Ingrese su correo electronico de vendedor");
+        String correo = sc.nextLine();
+        System.out.println("Ingrese su clave de vendedor");
+        String cv = sc.nextLine();
+        boolean credenciales = validarCredenciales(correo, cv, nfilevendedores);
+        while(credenciales != true){
+            System.out.println("Usuario o contraseña incorrecto - Ingrese de nuevo:");
+            System.out.println("Ingrese su correo electronico de vendedor");
+            correo = sc.nextLine();
+            System.out.println("Ingrese su clave de vendedor");
+            cv = sc.nextLine();
+            credenciales = validarCredenciales(correo, cv, nfilevendedores);
+        }
+        int i=0;
+        int x= 0;
+        ArrayList<Oferta> ofertas = Oferta.readFileOfertas(nfileO);
+        ArrayList<Oferta> ofertascomprador = Oferta.searchBycorreo(ofertas, correo);
+        while(x==0){
+            String placaIn = ofertascomprador.get(i).getVehiculo().getPlaca();
+            ArrayList<Vehiculo> vehSel= Vehiculo.vehConPlaca(nfileVeh, placaIn);
+            Vehiculo vehiculoI=vehSel.get(i);
+            ArrayList<Double> precioSel=Oferta.precioVeh(placaIn);
+            double precioI=precioSel.get(i);
+            ArrayList<String> correoSel=Oferta.correoVeh(placaIn);
+            String correoI=correoSel.get(i);
+            
+            System.out.println(vehiculoI.getMarca()+" "+vehiculoI.getModelo()+" Precio: "+vehiculoI.getPrecio() );
+            System.out.println(" ");
+            System.out.println("Oferta"+(i+1));
+            System.out.println("Correo: "+correoI);
+            System.out.println("Precio ofertado: "+ precioI);
+            
+            int resp=0;
+            if(i==0){
+                System.out.println("Ingrese el número de la opción que desea: \n 1.Eliminar oferta \n 2.Siguiente oferta ");
+                resp=sc.nextInt();
+                if (resp==1){
+                    Util.eliminarInformacion("Ofertas.txt", i + 1);
+                } else if (resp == 2) {
+                    if (i >= 0 && i < vehSel.size() - 1) {
+                        i++;
+                    } else {
+                        i--;
+                    }
+                } else if (resp == 3)
+                    i--;
+                else if (resp == 9)
+                    x += 1;
+            } 
+            else if(i>0 && i<vehSel.size()-1){
+                System.out.println("Ingrese el número de la opción que desea: \n 1. Eliminar oferta \n 2.Siguiente oferta \n 3. Anteior oferta");
+                resp=sc.nextInt();
+                if (resp==1){
+                    Util.eliminarInformacion("Ofertas.txt", i + 1);
+                } else if (resp == 2) {
+                    if (i >= 0 && i < vehSel.size() - 1) {
+                        i++;
+                    } else {
+                        i--;
+                    }
+                } else if (resp == 3)
+                    i--;
+                else if (resp == 9)
+                    x += 1;
+            }
+            else if(i==vehSel.size()-1){
+                System.out.println("Ingrese el número de la opción que desea: \n 1.Eliminar oferta \n 3.Anterior oferta ");
+                resp=sc.nextInt();
+                if (resp==1){
+                    Util.eliminarInformacion("Ofertas.txt", i + 1);
+                } else if (resp == 2) {
+                    if (i >= 0 && i < vehSel.size() - 1) {
+                        i++;
+                    } else {
+                        i--;
+                    }
+                } else if (resp == 3)
+                    i--;
+                else if (resp == 9)
+                    x += 1;
+            }
+        }
+    }       
 }

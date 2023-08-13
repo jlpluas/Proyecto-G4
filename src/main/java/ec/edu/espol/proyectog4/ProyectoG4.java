@@ -39,8 +39,8 @@ public class ProyectoG4 {
 //                           1. Métodos de Vendedor
 //                           2. Métodos de Comprador
 //                           3. Salir""");
-            System.out.println("Ingrese una opcion");
-            opcion=Integer.parseInt(sc.nextLine());   
+//            System.out.println("Ingrese una opcion");
+            opcion=Integer.parseInt(sc.nextLine());         
         }       
     }   
 }    

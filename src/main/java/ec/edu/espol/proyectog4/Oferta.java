@@ -16,7 +16,7 @@ public class Oferta {
     private Vehiculo vehiculo;
     public static ArrayList<Oferta> ofertasVehiculos=new ArrayList<>();
 
-public Oferta(double precio_oferta, String correo, Vehiculo vehiculo) {
+    public Oferta(double precio_oferta, String correo, Vehiculo vehiculo) {
         this.precio_oferta = precio_oferta;
         this.correo = correo;
         this.vehiculo = vehiculo;
