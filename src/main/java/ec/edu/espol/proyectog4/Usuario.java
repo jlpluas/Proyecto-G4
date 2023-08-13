@@ -231,14 +231,14 @@ public class Usuario implements Serializable{
     }
     
     public static ArrayList<Usuario> readListFromFileSer(String nfile){
-        ArrayList<Usuario> polinomios = new ArrayList<>();
+        ArrayList<Usuario> usuarios = new ArrayList<>();
         try(ObjectInputStream in = new ObjectInputStream(new FileInputStream(nfile))){ 
-                polinomios = (ArrayList<Usuario>)in.readObject();
+            usuarios = (ArrayList<Usuario>)in.readObject();
         }catch(IOException e){
             System.out.println(e.getMessage());
         }catch(ClassNotFoundException c){
             System.out.println(c.getMessage());
         }
-        return polinomios;
+        return usuarios;
     } 
 }
