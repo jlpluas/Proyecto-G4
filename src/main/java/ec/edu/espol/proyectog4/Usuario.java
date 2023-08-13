@@ -8,8 +8,13 @@ import static ec.edu.espol.util.Util.getSHA;
 import static ec.edu.espol.util.Util.nextID;
 import static ec.edu.espol.util.Util.toHexString;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -19,7 +24,7 @@ import java.util.Scanner;
  *
  * @author romiy
  */
-public class Usuario {
+public class Usuario implements Serializable{
     private int id;
     private String nombres;
     private String apellidos;
@@ -127,6 +132,22 @@ public class Usuario {
         }
         return claves;
     }
+    
+    public static ArrayList<Usuario> readFileUsuarios(String nfile) {
+        ArrayList<Usuario> usuarios = new ArrayList<>();
+        try (Scanner sc = new Scanner(new File(nfile))) {
+            while (sc.hasNextLine()) {
+                String line = sc.nextLine();
+                String[] tokens = line.split("\\|");
+                int ids = Integer.parseInt(tokens[0]);
+                Usuario usua = new Usuario(ids,tokens[1],tokens[2],tokens[3],tokens[4],tokens[5]);
+                usuarios.add(usua);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return usuarios;
+    }
 
     public static boolean validarCredenciales(String correo, String cv, String nfile){
         Boolean correoin = false;
@@ -199,5 +220,25 @@ public class Usuario {
         } catch (NoSuchAlgorithmException e) {
             System.out.println("Exception thrown for incorrect algorithm: " + e.getMessage());
         }
-    }    
+    }
+
+    public static void saveListToFileSer(String nfile, ArrayList<Usuario> usuarios){
+        try(ObjectOutputStream fout = new ObjectOutputStream(new FileOutputStream(nfile))){
+            fout.writeObject(usuarios);
+        }catch(IOException e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public static ArrayList<Usuario> readListFromFileSer(String nfile){
+        ArrayList<Usuario> polinomios = new ArrayList<>();
+        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream(nfile))){ 
+                polinomios = (ArrayList<Usuario>)in.readObject();
+        }catch(IOException e){
+            System.out.println(e.getMessage());
+        }catch(ClassNotFoundException c){
+            System.out.println(c.getMessage());
+        }
+        return polinomios;
+    } 
 }
