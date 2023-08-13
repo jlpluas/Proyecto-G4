@@ -40,7 +40,7 @@ public class IngresoController{
     }
 
     @FXML
-    private void ingresar(ActionEvent event) {
+    private void ingresar(ActionEvent event) throws IOException {
         String usuario = txtfieldUsuario.getText();
         String contraseña = txtfieldContraseña.getText(); 
         
@@ -50,10 +50,15 @@ public class IngresoController{
             if (us.getCorreo_electronico().equals(usuario) && us.getClave().equals(contraseña))
                 b=true;
         } 
-        if (b==true)
-            mostrarAlertaC();    
+        if (b==true) {
+            mostrarAlertaC();
+            App.setRoot("menu");
+        }
+            
         else 
-            mostrarAlertaI();   
+            mostrarAlertaI(); 
+        
+        
     }
     
         
