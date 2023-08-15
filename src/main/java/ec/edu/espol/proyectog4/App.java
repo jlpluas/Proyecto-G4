@@ -36,12 +36,12 @@ public class App extends Application {
 
     public static void main(String[] args) {
         launch();
-        Usuario us1= new Usuario(1,"Joselyn","Barzola","espol","ljbarzol@espol.edu.ec","Joselyn16"); 
-        Usuario us2= new Usuario(2,"Isaac","Criollo", "espol","isaac@espol.edu.ec","Isaac");
-        ArrayList<Usuario> lstusuarios= new ArrayList<>();
-        lstusuarios.add(us1);
-        lstusuarios.add(us2);
-        Usuario.saveListToFileSer("usuarios.ser", lstusuarios);
+//        Usuario us1= new Usuario(1,"Joselyn","Barzola","espol","ljbarzol@espol.edu.ec","Joselyn16"); 
+//        Usuario us2= new Usuario(2,"Isaac","Criollo", "espol","isaac@espol.edu.ec","Isaac");
+//        ArrayList<Usuario> lstusuarios= new ArrayList<>();
+//        lstusuarios.add(us1);
+//        lstusuarios.add(us2);
+//        Usuario.saveListToFileSer("usuarios.ser", lstusuarios);
         
 
     }

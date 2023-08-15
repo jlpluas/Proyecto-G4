@@ -34,8 +34,14 @@
                   <Font name="Bell MT" size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="txtfieldUsuario" GridPane.columnIndex="2" GridPane.valignment="BOTTOM" />
-            <PasswordField fx:id="txtfieldContraseña" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <TextField fx:id="txtfieldUsuario" GridPane.columnIndex="2" GridPane.valignment="BOTTOM">
+               <font>
+                  <Font name="Bell MT" size="15.0" />
+               </font></TextField>
+            <PasswordField fx:id="txtfieldContraseña" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Bell MT" size="15.0" />
+               </font></PasswordField>
          </children>
       </GridPane>
    </center>
