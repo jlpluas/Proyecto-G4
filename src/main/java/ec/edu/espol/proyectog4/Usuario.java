@@ -41,6 +41,13 @@ public class Usuario implements Serializable{
         this.clave = clave;
     }
 
+    public Usuario(String correo_electronico, String clave) {
+        this.correo_electronico = correo_electronico;
+        this.clave = clave;
+    }
+    
+   
+
     public int getId() {
         return id;
     }

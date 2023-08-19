@@ -43,22 +43,21 @@ public class IngresoController{
     private void ingresar(ActionEvent event) throws IOException {
         String usuario = txtfieldUsuario.getText();
         String contraseña = txtfieldContraseña.getText(); 
-        
+
         ArrayList<Usuario> usuarios=Usuario.readListFromFileSer("usuarios.ser");
-        boolean b=false;
-        for (Usuario us: usuarios){
-            if (us.getCorreo_electronico().equals(usuario) && us.getClave().equals(contraseña))
-                b=true;
-        } 
-        if (b==true) {
+        ArrayList<String> correos= new ArrayList<>();
+        ArrayList<String> contraseñas= new ArrayList<>();
+        for (Usuario us:usuarios){
+            correos.add(us.getCorreo_electronico());
+            contraseñas.add(us.getClave());
+        }
+        if (correos.contains(usuario)&& contraseñas.contains(contraseña)){
             mostrarAlertaC();
             App.setRoot("menu");
-        }
-            
-        else 
-            mostrarAlertaI(); 
         
-        
+        } else 
+            mostrarAlertaI();
+
     }
     
         

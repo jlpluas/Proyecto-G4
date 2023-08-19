@@ -4,9 +4,13 @@
  */
 package ec.edu.espol.proyectog4;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 
 /**
  * FXML Controller class
@@ -15,6 +19,13 @@ import javafx.fxml.Initializable;
  */
 public class MenuController implements Initializable {
 
+    @FXML
+    private Button registrarVehiculo;
+    @FXML
+    private Button buscarVehiculo;
+    @FXML
+    private Button ofertarVehiculo;
+
     /**
      * Initializes the controller class.
      */
@@ -22,5 +33,20 @@ public class MenuController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void registrarV(ActionEvent event) throws IOException {
+        App.setRoot("registrarV"); 
+    }
+
+    @FXML
+    private void buscarV(ActionEvent event)throws IOException {
+        App.setRoot("buscarV");
+    }
+
+    @FXML
+    private void ofertarV(ActionEvent event) throws IOException{
+        App.setRoot("ofertarV");
+    }
     
 }
