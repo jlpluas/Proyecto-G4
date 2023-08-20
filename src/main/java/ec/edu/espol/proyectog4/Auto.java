@@ -23,6 +23,27 @@ public class Auto extends Vehiculo{
         this.transmision = transmision;
     }
 
+    public Auto() {
+    }
+
+    public String getVidrios() {
+        return vidrios;
+    }
+
+    public void setVidrios(String vidrios) {
+        this.vidrios = vidrios;
+    }
+
+    public String getTransmision() {
+        return transmision;
+    }
+
+    public void setTransmision(String transmision) {
+        this.transmision = transmision;
+    }
+
+
+
     public static Auto ingresarAuto(Scanner sc, String nfilev,Vendedor vendedor){
         Vehiculo vehiculo= ingresarVehiculo(sc, nfilev,vendedor);
         System.out.println("Ingrese vidrios:");

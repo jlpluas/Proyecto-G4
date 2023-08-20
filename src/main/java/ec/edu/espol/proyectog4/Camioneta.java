@@ -5,6 +5,8 @@
 package ec.edu.espol.proyectog4;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
@@ -19,6 +21,18 @@ public class Camioneta extends Vehiculo {
         super(id, placa, marca, modelo, tipo_motor, año, recorrido, color, tipo_comb, precio,vendedor);
         this.traccion = traccion;
     }
+
+    public Camioneta() {
+    }
+
+    public String getTraccion() {
+        return traccion;
+    }
+
+    public void setTraccion(String traccion) {
+        this.traccion = traccion;
+    }
+    
     public static Camioneta ingresarCamioneta(Scanner sc, String nfilev,Vendedor vendedor) {
         Vehiculo vehiculo=ingresarVehiculo(sc, nfilev,vendedor);
         System.out.println("Ingrese la tracción:");
@@ -39,6 +53,5 @@ public class Camioneta extends Vehiculo {
     public String toString() {
         return super.toString() + "\n traccion=" + traccion;
     }
-    
     
 }

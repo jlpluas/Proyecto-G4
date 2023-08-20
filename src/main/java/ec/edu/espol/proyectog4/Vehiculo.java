@@ -6,7 +6,11 @@ package ec.edu.espol.proyectog4;
 
 import static ec.edu.espol.util.Util.nextID;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -42,6 +46,10 @@ public class Vehiculo {
         this.vendedor = vendedor;
     }
 
+    public Vehiculo() {
+    }
+
+    
     public int getId() {
         return id;
     }
@@ -253,4 +261,24 @@ public class Vehiculo {
        Vehiculo v= new Vehiculo(idv,placa,marca,modelo,tmotor,año,recorrido,color,tcombustible,precio,vendedor);
        return v;
     }
+    
+    public static void saveListToFileSer(String nfile, Vehiculo vehiculo){
+        try(ObjectOutputStream fout = new ObjectOutputStream(new FileOutputStream(nfile))){
+            fout.writeObject(vehiculo);
+        }catch(IOException e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public static ArrayList<Vehiculo> readListFromFileSer(String nfile){
+        ArrayList<Vehiculo> vehiculos = new ArrayList<>();
+        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream(nfile))){ 
+            vehiculos = (ArrayList<Vehiculo>)in.readObject();
+        }catch(IOException e){
+            System.out.println(e.getMessage());
+        }catch(ClassNotFoundException c){
+            System.out.println(c.getMessage());
+        }
+        return vehiculos;
+    } 
 }
