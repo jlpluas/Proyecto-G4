@@ -104,6 +104,7 @@ public class RegistrarVController implements Initializable {
         }
     }
     
+    @FXML
     private void guardarDatos() {
         
         for (int i = 0; i < v2.getChildren().size(); i++) {
@@ -134,19 +135,29 @@ public class RegistrarVController implements Initializable {
         }
         
     }
-
+   
     @FXML
     private void registrar(ActionEvent event) throws IOException {
-        ArrayList<Vehiculo> vehiculos= Vehiculo.readListFromFileSer("vehiculos.ser");
+        guardarDatos();
         
-        if (vehiculos.contains(vehiculoActual)){
+        ArrayList<Vehiculo> vehiculos= Vehiculo.readListFromFileSer("vehiculos.ser");
+        ArrayList<String> lstplacas= new ArrayList<>();
+        for (Vehiculo v: vehiculos){
+            lstplacas.add(v.getPlaca());
+        }
+        
+        if (lstplacas.contains(vehiculoActual.getPlaca())){
             Alert alerta= new Alert(AlertType.ERROR);
             alerta.setContentText("Vehiculo ya registrado");
             alerta.show();
 //            App.setRoot("registrarV");            
         }else{
-            Vehiculo.saveListToFileSer("vehiculos.ser", vehiculoActual);
+            ArrayList<Vehiculo> nuevosVehiculos = new ArrayList<>(vehiculos);
+            nuevosVehiculos.add(vehiculoActual);
+            Vehiculo.saveListToFileSer("vehiculos.ser", nuevosVehiculos);
+            vehiculos.add(vehiculoActual); 
+            App.setRoot("menu");
         }
-//        App.setRoot("menu");
+
     }
 }

@@ -7,13 +7,14 @@ package ec.edu.espol.proyectog4;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.util.Scanner;
 
 /**
  *
  * @author USER
  */
-public class Auto extends Vehiculo{
+public class Auto extends Vehiculo implements Serializable{
     private String vidrios;
     private String transmision; 
 

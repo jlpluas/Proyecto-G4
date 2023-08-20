@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -19,7 +20,7 @@ import java.util.Scanner;
  *
  * @author romiy
  */
-public class Vehiculo {
+public class Vehiculo implements Serializable{
     private int id;
     private String placa; 
     private String marca; 
@@ -262,14 +263,18 @@ public class Vehiculo {
        return v;
     }
     
-    public static void saveListToFileSer(String nfile, Vehiculo vehiculo){
-        try(ObjectOutputStream fout = new ObjectOutputStream(new FileOutputStream(nfile))){
-            fout.writeObject(vehiculo);
-        }catch(IOException e){
-            System.out.println(e.getMessage());
-        }
-    }
+    public static void saveListToFileSer(String nfile, ArrayList<Vehiculo> nuevosVehiculos) {
+    ArrayList<Vehiculo> vehiculosExistentes = readListFromFileSer(nfile); 
     
+    vehiculosExistentes.addAll(nuevosVehiculos); 
+    
+    try (ObjectOutputStream fout = new ObjectOutputStream(new FileOutputStream(nfile))) {
+        fout.writeObject(vehiculosExistentes); 
+    } catch (IOException e) {
+        System.out.println(e.getMessage());
+    }
+}
+
     public static ArrayList<Vehiculo> readListFromFileSer(String nfile){
         ArrayList<Vehiculo> vehiculos = new ArrayList<>();
         try(ObjectInputStream in = new ObjectInputStream(new FileInputStream(nfile))){ 

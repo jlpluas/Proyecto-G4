@@ -8,13 +8,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.util.Scanner;
 
 /**
  *
  * @author USER
  */
-public class Camioneta extends Vehiculo {
+public class Camioneta extends Vehiculo implements Serializable{
     private String traccion;
 
     public Camioneta(String traccion, int id, String placa, String marca, String modelo, String tipo_motor, int año, int recorrido, String color, String tipo_comb, int precio, Vendedor vendedor) {
