@@ -51,6 +51,7 @@ public class IngresoController{
             correos.add(us.getCorreo_electronico());
             contraseñas.add(us.getClave());
         }
+        
         if (correos.contains(usuario)&& contraseñas.contains(contraseña)){
             mostrarAlertaC();
             App.setRoot("menu");

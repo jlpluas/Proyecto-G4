@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
@@ -43,10 +45,22 @@ public class RegistrosController implements Initializable {
     private void registrar(MouseEvent event) throws IOException {
         Usuario us= new Usuario(0,txtfieldNombre.getText(),txtfieldApellido.getText(),txtfieldOrganizacion.getText(),txtfieldCorreo.getText(),txtfieldContraseña.getText());
         ArrayList<Usuario> usuarios=Usuario.readListFromFileSer("usuarios.ser");
-        usuarios.add(us);
-        Usuario.saveListToFileSer("usuarios.ser", usuarios);
         
-        App.setRoot("ingreso");
+        ArrayList<String> correos= new ArrayList<>();
+        for (Usuario u:usuarios)
+            correos.add(u.getCorreo_electronico());
+        System.out.println(correos);
+        if (correos.contains(txtfieldCorreo.getText())){
+            Alert alerta= new Alert(AlertType.ERROR);
+            alerta.setContentText("Correo ya existente");
+            alerta.show();
+            txtfieldCorreo.clear();
+        } else {
+            usuarios.add(us);
+            Usuario.saveListToFileSer("usuarios.ser", usuarios);
+
+            App.setRoot("ingreso");
+        }
     }
     
     
