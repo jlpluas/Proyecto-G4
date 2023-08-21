@@ -52,7 +52,7 @@
                   <Font name="Bell MT" size="25.0" />
                </font>
             </Button>
-            <Button fx:id="buscarVehiculo" mnemonicParsing="false" onAction="#buscarV" text="Buscar vehiculo" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="3" GridPane.halignment="CENTER">
+            <Button fx:id="buscarVehiculo" mnemonicParsing="false" onAction="#buscar" text="Buscar vehiculo" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="3" GridPane.halignment="CENTER">
                <font>
                   <Font name="Bell MT" size="25.0" />
                </font>

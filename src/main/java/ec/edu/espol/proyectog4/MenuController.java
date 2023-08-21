@@ -40,13 +40,13 @@ public class MenuController implements Initializable {
     }
 
     @FXML
-    private void buscarV(ActionEvent event)throws IOException {
-        App.setRoot("buscarV");
+    private void ofertarV(ActionEvent event) throws IOException{
+        App.setRoot("ofertarV");
     }
 
     @FXML
-    private void ofertarV(ActionEvent event) throws IOException{
-        App.setRoot("ofertarV");
+    private void buscar(ActionEvent event) throws IOException {
+        App.setRoot("buscar");
     }
     
 }
