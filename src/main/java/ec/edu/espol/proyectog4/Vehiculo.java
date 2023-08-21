@@ -263,13 +263,10 @@ public class Vehiculo implements Serializable{
        return v;
     }
     
-    public static void saveListToFileSer(String nfile, ArrayList<Vehiculo> nuevosVehiculos) {
-    ArrayList<Vehiculo> vehiculosExistentes = readListFromFileSer(nfile); 
-    
-    vehiculosExistentes.addAll(nuevosVehiculos); 
+    public static void saveListToFileSer(String nfile, ArrayList<Vehiculo> vehiculos) {
     
     try (ObjectOutputStream fout = new ObjectOutputStream(new FileOutputStream(nfile))) {
-        fout.writeObject(vehiculosExistentes); 
+        fout.writeObject(vehiculos); 
     } catch (IOException e) {
         System.out.println(e.getMessage());
     }

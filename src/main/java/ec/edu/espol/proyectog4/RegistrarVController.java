@@ -133,7 +133,6 @@ public class RegistrarVController implements Initializable {
         } else if (vehiculoActual instanceof Vehiculo) {
             Vehiculo moto = vehiculoActual;
         }
-        
     }
    
     @FXML
@@ -152,12 +151,10 @@ public class RegistrarVController implements Initializable {
             alerta.show();
 //            App.setRoot("registrarV");            
         }else{
-            ArrayList<Vehiculo> nuevosVehiculos = new ArrayList<>(vehiculos);
-            nuevosVehiculos.add(vehiculoActual);
-            Vehiculo.saveListToFileSer("vehiculos.ser", nuevosVehiculos);
             vehiculos.add(vehiculoActual); 
+            Vehiculo.saveListToFileSer("vehiculos.ser", vehiculos);
             App.setRoot("menu");
         }
-
+        datosIngresados.clear();
     }
 }
