@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="435.0" prefWidth="577.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.proyectog4.FiltradoController">
+   <center>
+      <TableView fx:id="tabla" prefHeight="418.0" prefWidth="627.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="idColumn" prefWidth="29.0" text="id" />
+          <TableColumn fx:id="placaColumn" prefWidth="49.0" text="Placa" />
+            <TableColumn fx:id="añoColumn" prefWidth="85.0" text="Año" />
+            <TableColumn fx:id="colorColumn" prefWidth="61.0" text="Color" />
+            <TableColumn fx:id="marcaColumn" text="Marca" />
+            <TableColumn fx:id="modeloColumn" prefWidth="39.0" text="Modelo" />
+            <TableColumn fx:id="recorridoColumn" prefWidth="67.0" text="Recorrido" />
+            <TableColumn fx:id="tipoCombColumn" prefWidth="32.0" text="Tipo de Combustible" />
+            <TableColumn fx:id="tipoMotorColumn" prefWidth="66.0" text="Tipo de Motor" />
+            <TableColumn fx:id="precioColumn" prefWidth="66.0" text="Precio" />
+        </columns>
+      </TableView>
+   </center>
+</BorderPane>

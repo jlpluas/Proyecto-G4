@@ -4,8 +4,10 @@
  */
 package ec.edu.espol.proyectog4;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -35,7 +37,14 @@ public class BuscarController implements Initializable {
     private TextField rmax;
     @FXML
     private Button buscar;
-
+    
+    static String tipoVehiculo;
+    static int recorridomin;
+    static int recorridomax;
+    static int añomin;
+    static int añomax;
+    static int preciomin;
+    static int preciomax;
     /**
      * Initializes the controller class.
      */
@@ -44,4 +53,20 @@ public class BuscarController implements Initializable {
         tipoV.getItems().addAll("Auto","Camioneta","Motocicleta");
     }    
     
+    public void darvalores(){
+        recorridomin = Integer.parseInt(rmin.getText());
+        recorridomax = Integer.parseInt(rmax.getText());
+        añomin = Integer.parseInt(amin.getText());
+        añomax = Integer.parseInt(amax.getText());
+        preciomin = Integer.parseInt(pmin.getText());
+        preciomax = Integer.parseInt(pmax.getText());
+        tipoVehiculo= tipoV.getSelectionModel().getSelectedItem();
+    }
+
+    @FXML
+    private void buscar(ActionEvent event) throws IOException {
+        darvalores();
+        App.setRoot("filtrado");
+    }
+
 }
