@@ -4,6 +4,8 @@
  */
 package ec.edu.espol.proyectog4;
 
+import ec.edu.espol.proyectog4.App;
+import modelo.Usuario;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -38,7 +40,7 @@ public class RegistrosController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+//        launch();
     }    
 
     @FXML

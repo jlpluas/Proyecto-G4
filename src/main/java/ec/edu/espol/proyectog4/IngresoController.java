@@ -4,6 +4,7 @@
  */
 package ec.edu.espol.proyectog4;
 
+import modelo.Usuario;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;

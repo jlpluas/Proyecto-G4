@@ -4,6 +4,7 @@
 
 package ec.edu.espol.proyectog4;
 
+import modelo.Menu;
 import ec.edu.espol.util.Util;
 import java.util.Scanner;
 

@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package ec.edu.espol.proyectog4;
+package modelo;
 
 import ec.edu.espol.util.Util;
 import static ec.edu.espol.util.Util.getSHA;

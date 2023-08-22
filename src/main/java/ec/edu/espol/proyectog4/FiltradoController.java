@@ -4,6 +4,9 @@
  */
 package ec.edu.espol.proyectog4;
 
+import modelo.Auto;
+import modelo.Vehiculo;
+import modelo.Camioneta;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;

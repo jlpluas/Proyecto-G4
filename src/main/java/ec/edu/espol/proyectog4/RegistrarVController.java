@@ -4,6 +4,9 @@
  */
 package ec.edu.espol.proyectog4;
 
+import modelo.Auto;
+import modelo.Vehiculo;
+import modelo.Camioneta;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -104,7 +107,6 @@ public class RegistrarVController implements Initializable {
         }
     }
     
-    @FXML
     private void guardarDatos() {
         
         for (int i = 0; i < v2.getChildren().size(); i++) {
@@ -156,5 +158,10 @@ public class RegistrarVController implements Initializable {
             App.setRoot("menu");
         }
         datosIngresados.clear();
+    }
+
+    @FXML
+    private void regresar(MouseEvent event) throws IOException {
+        App.setRoot("menu");
     }
 }
