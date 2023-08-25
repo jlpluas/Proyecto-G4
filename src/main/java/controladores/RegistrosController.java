@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
-package ec.edu.espol.proyectog4;
+package controladores;
 
+import ec.edu.espol.proyectog4.App;
 import ec.edu.espol.proyectog4.App;
 import modelo.Usuario;
 import java.io.IOException;
