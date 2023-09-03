@@ -46,7 +46,7 @@ public class IngresoController{
     private void ingresar(ActionEvent event) throws IOException {
         String usuario = txtfieldUsuario.getText();
         String contraseña = txtfieldContraseña.getText(); 
-
+        
         ArrayList<Usuario> usuarios=Usuario.readListFromFileSer("usuarios.ser");
         ArrayList<String> correos= new ArrayList<>();
         ArrayList<String> contraseñas= new ArrayList<>();
@@ -61,10 +61,8 @@ public class IngresoController{
             usuarioing(usuarios);
         } else 
             mostrarAlertaI();
-
     }
-    
-        
+  
     private void mostrarAlertaC(){
         Alert alerta= new Alert(AlertType.INFORMATION);
         alerta.setContentText("Usuario correcto");
@@ -84,6 +82,18 @@ public class IngresoController{
         
         }
     
+    }
+    
+    static void actualizarUsuarios(){
+        ArrayList<Usuario> usuarios =Usuario.readListFromFileSer("usuarios.ser");
+        ArrayList<Usuario> nusuarios= new ArrayList<>();
+        for (Usuario usuario:usuarios){
+            if(usuario.getCorreo_electronico().equals(usuarioing.getCorreo_electronico()))
+                nusuarios.add(usuarioing);
+            else 
+                nusuarios.add(usuario);
+        }
+         Usuario.saveListToFileSer("usuarios.ser", nusuarios);
     }
     
 }
