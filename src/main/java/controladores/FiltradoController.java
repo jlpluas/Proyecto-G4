@@ -4,6 +4,7 @@
  */
 package controladores;
 
+import ec.edu.espol.proyectog4.App;
 import java.io.IOException;
 import modelo.Auto;
 import modelo.Vehiculo;
@@ -23,6 +24,7 @@ import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 /**
@@ -57,6 +59,13 @@ public class FiltradoController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    private static Vehiculo vhSelec;
+
+    public static Vehiculo getVhSelec() {
+        return vhSelec;
+    }
+
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         presentar();
@@ -64,28 +73,35 @@ public class FiltradoController implements Initializable {
             TableRow<Vehiculo> r= new TableRow<>();
             r.setOnMouseClicked(event ->{
                 if(!r.isEmpty() && event.getButton()== MouseButton.PRIMARY && event.getClickCount()==1){
-                    Vehiculo vehiculoSel= r.getItem();
-                    abrirOferta(vehiculoSel);
+                    vhSelec=r.getItem();
+                    try {
+                        App.setRoot("oferta");
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                    //Vehiculo vehiculoSel= r.getItem();
+                    //abrirOferta(vehiculoSel);
                 }
             });
             return r;
         });
     }  
     
-    private void abrirOferta(Vehiculo v){
-        try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("oferta.fxml"));
-            Parent root= loader.load();
-            OfertaController ofC= loader.getController();
-            ofC.datosVeh(v);
-            Stage st= new Stage();
-            st.setScene(new Scene(root));
-            st.show();
-            
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-    }
+//    private void abrirOferta(Vehiculo v){
+//        try{
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("oferta.fxml"));
+//            Parent root= loader.load();
+//            OfertaController ofC= loader.getController();
+//            ofC.datosVeh(v);
+//            FiltradoController flC= new FiltradoController();
+//            Stage st= new Stage();
+//            st.setScene(new Scene(root));
+//            st.show();
+//            
+//        } catch (IOException ex) {
+//            ex.printStackTrace();
+//        }
+//    }
 
     public void presentar(){
         ObservableList<Vehiculo> observableVehiculos = FXCollections.observableArrayList(filtrar());
@@ -140,6 +156,11 @@ public class FiltradoController implements Initializable {
         }
     
     return lstfinal;
+    }
+
+    @FXML
+    private void regresar(MouseEvent event) throws IOException {
+        App.setRoot("buscar");
     }
 
 }

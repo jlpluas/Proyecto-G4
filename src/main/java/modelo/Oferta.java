@@ -5,7 +5,11 @@
 package modelo;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -106,4 +110,24 @@ public class Oferta {
         }
         return correo;
     }
+    
+        public static void saveListToFileSer(String nfile, ArrayList<Oferta> ofertas){
+        try(ObjectOutputStream fout = new ObjectOutputStream(new FileOutputStream(nfile))){
+            fout.writeObject(ofertas);
+        }catch(IOException e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public static ArrayList<Oferta> readListFromFileSer(String nfile){
+        ArrayList<Oferta> ofertas = new ArrayList<>();
+        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream(nfile))){ 
+            ofertas = (ArrayList<Oferta>)in.readObject();
+        }catch(IOException e){
+            System.out.println(e.getMessage());
+        }catch(ClassNotFoundException c){
+            System.out.println(c.getMessage());
+        }
+        return ofertas;
+    } 
 }

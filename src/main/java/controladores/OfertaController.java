@@ -4,16 +4,22 @@
  */
 package controladores;
 
+import ec.edu.espol.proyectog4.App;
+import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import modelo.Oferta;
+import modelo.Usuario;
 import modelo.Vehiculo;
 
 /**
@@ -42,12 +48,18 @@ public class OfertaController implements Initializable {
     }    
 
     @FXML
-    private void enviarOferta(MouseEvent event) {
-        
-    }
+    public void enviarOferta(MouseEvent event) throws IOException {
+        Oferta of = new Oferta(Float.parseFloat(ofertaIn.getText()), "s", FiltradoController.getVhSelec());
+        ArrayList<Oferta> ofertas = Oferta.readListFromFileSer("oferta.ser");
+        ofertas.add(of);
+        Oferta.saveListToFileSer("oferta.ser", ofertas);
+        App.setRoot("filtrado");
+}
     
     public void datosVeh(Vehiculo v){
-        lInfo.setText(v.toString());
+        lInfo.setText(FiltradoController.getVhSelec().toString());
         img.setImage(new Image("img/"+ "     "));
+        
+        
     }
 }

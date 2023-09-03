@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
 /**
  * FXML Controller class
@@ -68,6 +69,11 @@ public class BuscarController implements Initializable {
     private void buscar(ActionEvent event) throws IOException {
         darvalores();
         App.setRoot("filtrado");
+    }
+
+    @FXML
+    private void regresar(MouseEvent event) throws IOException {
+        App.setRoot("menu");
     }
 
 }
