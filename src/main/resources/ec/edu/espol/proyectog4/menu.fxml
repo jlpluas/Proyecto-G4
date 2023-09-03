@@ -52,12 +52,12 @@
                   <Font name="Bell MT" size="25.0" />
                </font>
             </Button>
-            <Button fx:id="buscarVehiculo" mnemonicParsing="false" onAction="#buscar" text="Buscar vehiculo" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="3" GridPane.halignment="CENTER">
+            <Button mnemonicParsing="false" onAction="#OfertarV" text="Ofertar Vehiculo" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="3" GridPane.halignment="CENTER">
                <font>
                   <Font name="Bell MT" size="25.0" />
                </font>
             </Button>
-            <Button fx:id="ofertarVehiculo" mnemonicParsing="false" onAction="#ofertarV" text="Ofertar vehiculo" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+            <Button mnemonicParsing="false" onAction="#AceptarO" text="Aceptar Oferta" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <font>
                   <Font name="Bell MT" size="25.0" />
                </font>

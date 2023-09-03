@@ -4,9 +4,12 @@
  */
 package controladores;
 
+import ec.edu.espol.util.Util;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -48,9 +51,20 @@ public class AceptarOController implements Initializable {
             Label correo=new Label(oferta.getCorreo());
             vboferta.getChildren().add(precio); 
             vbcorreo.getChildren().add(correo);
-            vbbotones.getChildren().add(new Button("Aceptar Oferta"));
             
+            Button aceptar= new Button("Aceptar Oferta");
+            aceptar.setId("btnaceptar");
+            
+            aceptar.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent t) {
+                    Util.enviarCorreo(oferta.getCorreo(), IngresoController.usuarioing.getCorreo_electronico(), IngresoController.usuarioing.getClave(), oferta);
+                }
+            });
+            
+            vbbotones.getChildren().add(aceptar);
         }
+            
     }
     
     
