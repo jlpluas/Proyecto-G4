@@ -38,7 +38,7 @@ public class IngresoController{
     
     static String correo;
     static String contraseña;
-
+    
     public static String getCorreo() {
         return correo;
     }

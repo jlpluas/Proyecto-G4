@@ -188,46 +188,46 @@ public class Usuario implements Serializable{
         return null;
     }    
     
-    public static void nextUsuario(Scanner sc, String nfileUsuarios) {
-        int id_usuario = nextID(nfileUsuarios);
-        sc.useDelimiter("\n");
-        sc.useLocale(Locale.US);
-        System.out.println("Ingrese nombres");
-        String n = sc.next();
-        System.out.println("Ingrese apellidos");
-        String ape = sc.next();
-        System.out.println("Ingrese organizacion");
-        String org = sc.next();
-        System.out.println("Ingrese clave");
-        String cv = sc.next();
-        String password;
-        try {
-            password = toHexString(getSHA(cv));
-            System.out.println("Ingrese correo");
-            String correo = sc.next();
-            ArrayList<String> correos_dados = readFileCorreos(nfileUsuarios);
-            if(!correos_dados.isEmpty()){
-                boolean correoin = false; 
-                for (int i = 0;i<correos_dados.size();i++) {
-                    if (correos_dados.get(i).equals(correo)) {
-                    System.out.println("Correo ya registrado");
-                    correoin = true;
-                    }
-                }
-                if(correoin == false){
-                    Vendedor v = new Vendedor(id_usuario, n, ape, org, correo, password);
-                    v.saveArchivo(nfileUsuarios);
-                    System.out.println("Usuario registrado");
-                }
-            }else{
-                Vendedor v = new Vendedor(id_usuario,n,ape,org,correo,password);
-                v.saveArchivo(nfileUsuarios);
-                System.out.println("Primer Usuario registrado!");
-            }                
-        } catch (NoSuchAlgorithmException e) {
-            System.out.println("Exception thrown for incorrect algorithm: " + e.getMessage());
-        }
-    }
+//    public static void nextUsuario(Scanner sc, String nfileUsuarios) {
+//        int id_usuario = nextID(nfileUsuarios);
+//        sc.useDelimiter("\n");
+//        sc.useLocale(Locale.US);
+//        System.out.println("Ingrese nombres");
+//        String n = sc.next();
+//        System.out.println("Ingrese apellidos");
+//        String ape = sc.next();
+//        System.out.println("Ingrese organizacion");
+//        String org = sc.next();
+//        System.out.println("Ingrese clave");
+//        String cv = sc.next();
+//        String password;
+//        try {
+//            password = toHexString(getSHA(cv));
+//            System.out.println("Ingrese correo");
+//            String correo = sc.next();
+//            ArrayList<String> correos_dados = readFileCorreos(nfileUsuarios);
+//            if(!correos_dados.isEmpty()){
+//                boolean correoin = false; 
+//                for (int i = 0;i<correos_dados.size();i++) {
+//                    if (correos_dados.get(i).equals(correo)) {
+//                    System.out.println("Correo ya registrado");
+//                    correoin = true;
+//                    }
+//                }
+//                if(correoin == false){
+//                    Vendedor v = new Vendedor(id_usuario, n, ape, org, correo, password);
+//                    v.saveArchivo(nfileUsuarios);
+//                    System.out.println("Usuario registrado");
+//                }
+//            }else{
+//                Vendedor v = new Vendedor(id_usuario,n,ape,org,correo,password);
+//                v.saveArchivo(nfileUsuarios);
+//                System.out.println("Primer Usuario registrado!");
+//            }                
+//        } catch (NoSuchAlgorithmException e) {
+//            System.out.println("Exception thrown for incorrect algorithm: " + e.getMessage());
+//        }
+//    }
 
     public static void saveListToFileSer(String nfile, ArrayList<Usuario> usuarios){
         try(ObjectOutputStream fout = new ObjectOutputStream(new FileOutputStream(nfile))){

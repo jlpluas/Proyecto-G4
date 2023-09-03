@@ -75,13 +75,7 @@ public class OfertaController implements Initializable {
     
     public void datosVeh(Vehiculo v){
         lInfo.setText(FiltradoController.getVhSelec().toString());
-        
-            FileChooser fc= new FileChooser();
-            fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Imágenes","*.jpg","*.jpeg","*.png"));
-            File archSelec=fc.showOpenDialog(new Stage());
-            //return (archSelec != null)? archSelec.ge
-        
-        
+        img.setImage(new Image(FiltradoController.getVhSelec().getImagen()));
         
     }
 }

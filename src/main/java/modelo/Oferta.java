@@ -67,14 +67,14 @@ public class Oferta {
         return precio;
     }
     
-    public void saveArchivoOferta(String nfile){
-        try(PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nfile),true))){
-            pw.println(this.precio_oferta+"|"+this.correo+"|"+this.vehiculo.getId());
-            
-        } catch(Exception e){
-            System.out.println(e.getMessage());
-        }
-    }
+//    public void saveArchivoOferta(String nfile){
+//        try(PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nfile),true))){
+//            pw.println(this.precio_oferta+"|"+this.correo+"|"+this.vehiculo.getId());
+//            
+//        } catch(Exception e){
+//            System.out.println(e.getMessage());
+//        }
+//    }
     
     public static ArrayList<Oferta> searchBycorreo(ArrayList<Oferta> ofertas, String correo){
         ArrayList<Oferta> ofertasComprador = new ArrayList<>();
@@ -85,22 +85,22 @@ public class Oferta {
         return ofertasComprador;
     }
     
-    public static ArrayList<Oferta> readFileOfertas(String nfile){
-        ArrayList<Oferta> ofertas = new ArrayList<>();
-        try(Scanner sc = new Scanner(new File(nfile))){
-            while(sc.hasNextLine()){
-                String line = sc.nextLine();
-                String[] tokens = line.split("\\|");
-                ArrayList<Vehiculo> vehiculos = Vehiculo.readFileVehiculos("Vehiculos.txt");
-                Vehiculo vehiculo = Vehiculo.searchByID(vehiculos,Integer.parseInt(tokens[2]));
-                Oferta oferta = new Oferta(Double.parseDouble(tokens[0]),tokens[1],vehiculo);
-                ofertas.add(oferta);
-            }
-        }catch(Exception e){
-            System.out.println(e.getMessage());
-        }
-        return ofertas;
-    }
+//    public static ArrayList<Oferta> readFileOfertas(String nfile){
+//        ArrayList<Oferta> ofertas = new ArrayList<>();
+//        try(Scanner sc = new Scanner(new File(nfile))){
+//            while(sc.hasNextLine()){
+//                String line = sc.nextLine();
+//                String[] tokens = line.split("\\|");
+//                ArrayList<Vehiculo> vehiculos = Vehiculo.readFileVehiculos("Vehiculos.txt");
+//                Vehiculo vehiculo = Vehiculo.searchByID(vehiculos,Integer.parseInt(tokens[2]));
+//                Oferta oferta = new Oferta(Double.parseDouble(tokens[0]),tokens[1],vehiculo);
+//                ofertas.add(oferta);
+//            }
+//        }catch(Exception e){
+//            System.out.println(e.getMessage());
+//        }
+//        return ofertas;
+//    }
     
     public static ArrayList<String> correoVeh(String placa){
         ArrayList<String> correo= new ArrayList<>();

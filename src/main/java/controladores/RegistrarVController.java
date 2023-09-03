@@ -53,6 +53,8 @@ public class RegistrarVController implements Initializable {
     
     private ArrayList<String> datosIngresados = new ArrayList<>();
     private Vehiculo vehiculoActual;
+    
+
     /**
      * Initializes the controller class.
      */
