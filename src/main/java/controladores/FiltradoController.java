@@ -72,7 +72,7 @@ public class FiltradoController implements Initializable {
         tabla.setRowFactory(tv -> {
             TableRow<Vehiculo> r= new TableRow<>();
             r.setOnMouseClicked(event ->{
-                if(!r.isEmpty() && event.getButton()== MouseButton.PRIMARY && event.getClickCount()==1){
+                if(!r.isEmpty() && event.getButton()== MouseButton.PRIMARY && event.getClickCount()==2){
                     vhSelec=r.getItem();
                     try {
                         App.setRoot("oferta");

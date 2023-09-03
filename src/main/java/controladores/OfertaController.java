@@ -47,7 +47,8 @@ public class OfertaController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        OfertaController oc= new OfertaController();
+        oc.datosVeh(FiltradoController.getVhSelec());
         
     }    
 
@@ -74,8 +75,13 @@ public class OfertaController implements Initializable {
 }
     
     public void datosVeh(Vehiculo v){
-        lInfo.setText(FiltradoController.getVhSelec().toString());
-        img.setImage(new Image(FiltradoController.getVhSelec().getImagen()));
+        //lInfo.setText(FiltradoController.getVhSelec().toString());
+        img.setImage(new Image("img/"+FiltradoController.getVhSelec().getImagen()));
         
+    }
+
+    @FXML
+    private void regresar(MouseEvent event) throws IOException {
+        App.setRoot("filtrado");
     }
 }
