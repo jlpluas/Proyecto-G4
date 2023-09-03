@@ -61,11 +61,11 @@ public class OfertaController implements Initializable {
             valor = Float.parseFloat(ofertaIn.getText());
         }
         if (valor != 0) {
-        Oferta of = new Oferta(Float.parseFloat(ofertaIn.getText()), IngresoController.getCorreo(), FiltradoController.getVhSelec());
+        Oferta of = new Oferta(Float.parseFloat(ofertaIn.getText()), IngresoController.usuarioing.getCorreo_electronico(), FiltradoController.getVhSelec());
         ArrayList<Oferta> ofertas = Oferta.readListFromFileSer("oferta.ser");
         ofertas.add(of);
         Oferta.saveListToFileSer("oferta.ser", ofertas);
-        Util.enviarCorreo(FiltradoController.getVhSelec().getUsuario().getCorreo_electronico(),IngresoController.getCorreo() , IngresoController.getContraseña(), of);
+        Util.enviarCorreo(FiltradoController.getVhSelec().getUsuario().getCorreo_electronico(),IngresoController.usuarioing.getCorreo_electronico() , IngresoController.usuarioing.getClave(), of);
         
         App.setRoot("filtrado");
         }
