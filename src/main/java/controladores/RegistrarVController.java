@@ -5,6 +5,7 @@
 package controladores;
 
 import ec.edu.espol.proyectog4.App;
+import java.io.File;
 import modelo.Auto;
 import modelo.Vehiculo;
 import modelo.Camioneta;
@@ -19,12 +20,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.event.*;
+import javafx.stage.*;
 
 /**
  * FXML Controller class
@@ -41,6 +46,10 @@ public class RegistrarVController implements Initializable {
     private VBox v1;
     @FXML
     private VBox v2;
+    @FXML
+    Button subirImagen=new Button("Subir Imagen");
+    @FXML
+    TextField imagenRuta=new TextField();
     
     private ArrayList<String> datosIngresados = new ArrayList<>();
     private Vehiculo vehiculoActual;
@@ -72,7 +81,11 @@ public class RegistrarVController implements Initializable {
     }
     
     public void ingresarAuto(){
+
         v1.getChildren().addAll(new Label("Placa: "),new Label("Marca: "),new Label("Modelo: "),new Label("Tipo de Motor: "),new Label("Año: "),new Label("Recorrido: "),new Label("Color: "),new Label("Tipo de Combustible: "),new Label("Precio: "),new Label("Vidrios: "),new Label("Transmision: "));
+        v1.getChildren().addAll(subirImagen);
+        subirImagen();
+        
         for (int v=0; v<v1.getChildren().size();v++)
             v1.getChildren().get(v).setStyle("-fx-font-size: 16px;"); 
         for (int i = 0; i < 11; i++) {
@@ -80,22 +93,34 @@ public class RegistrarVController implements Initializable {
             v2.getChildren().add(textField);
             datosIngresados.add(""); 
         }
+        
+        v2.getChildren().add(imagenRuta);
+        datosIngresados.add(""); 
     }
     
     public void ingresarCamioneta(){
         v1.getChildren().addAll(new Label("Placa: "),new Label("Marca: "),new Label("Modelo: "),new Label("Tipo de Motor: "),new Label("Año: "),new Label("Recorrido: "),new Label("Color: "),new Label("Tipo de Combustible: "),new Label("Precio: "),new Label("Traccion: "));
+        v1.getChildren().addAll(subirImagen);
+        subirImagen();
+        
         for (int v=0; v<v1.getChildren().size();v++)
-            v1.getChildren().get(v).setStyle("-fx-font-size: 16px;");            
+            v1.getChildren().get(v).setStyle("-fx-font-size: 16px;");        
+        
 
         for (int i = 0; i < 10; i++) {
             TextField textField = new TextField();
             v2.getChildren().add(textField);
             datosIngresados.add(""); 
         }
+        v2.getChildren().add(imagenRuta);
+        datosIngresados.add(""); 
     }
 
     public void ingresarMotocicleta(){
         v1.getChildren().addAll(new Label("Placa: "),new Label("Marca: "),new Label("Modelo: "),new Label("Tipo de Motor: "),new Label("Año: "),new Label("Recorrido: "),new Label("Color: "),new Label("Tipo de Combustible: "),new Label("Precio: "));
+        v1.getChildren().addAll(subirImagen);
+        subirImagen();
+        
         for (int v=0; v<v1.getChildren().size();v++){
             v1.getChildren().get(v).setStyle("-fx-font-size: 16px;");            
         }
@@ -106,6 +131,8 @@ public class RegistrarVController implements Initializable {
             v2.getChildren().add(textField);
             datosIngresados.add(""); 
         }
+        v2.getChildren().add(imagenRuta);
+        datosIngresados.add(""); 
     }
     
     private void guardarDatos() {
@@ -124,15 +151,16 @@ public class RegistrarVController implements Initializable {
         vehiculoActual.setColor(datosIngresados.get(6));
         vehiculoActual.setTipo_comb(datosIngresados.get(7));
         vehiculoActual.setPrecio(Integer.parseInt(datosIngresados.get(8)));
+        vehiculoActual.setImagen(datosIngresados.get(9));
                 
         if (vehiculoActual instanceof Auto) {
             Auto auto = (Auto) vehiculoActual;
-            auto.setVidrios(datosIngresados.get(9));
-            auto.setTransmision(datosIngresados.get(10));
+            auto.setVidrios(datosIngresados.get(10));
+            auto.setTransmision(datosIngresados.get(11));
             
         } else if (vehiculoActual instanceof Camioneta) {
             Camioneta camioneta = (Camioneta) vehiculoActual;
-            camioneta.setTraccion(datosIngresados.get(9));
+            camioneta.setTraccion(datosIngresados.get(10));
         } else if (vehiculoActual instanceof Vehiculo) {
             Vehiculo moto = vehiculoActual;
         }
@@ -164,5 +192,22 @@ public class RegistrarVController implements Initializable {
     @FXML
     private void regresar(MouseEvent event) throws IOException {
         App.setRoot("menu");
+    }
+    
+    private void subirImagen(){
+        subirImagen.setOnAction(eh->{
+        
+            FileChooser fc=new FileChooser();
+            fc.setInitialDirectory(new File("/"));
+            fc.getExtensionFilters().addAll(
+                    new FileChooser.ExtensionFilter("Imagen","*.png", "*.jpeg", "*.jpg"));
+            File selectedFile=fc.showOpenDialog(null);
+            
+            if(selectedFile !=null)
+                imagenRuta.setText(selectedFile.getName());
+            else
+                System.out.println("file is not valid");
+            
+        });
     }
 }

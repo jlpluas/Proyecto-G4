@@ -20,8 +20,8 @@ public class Auto extends Vehiculo implements Serializable{
     private String vidrios;
     private String transmision; 
 
-    public Auto(int id, String placa, String marca, String modelo, String tipo_motor, int año, int recorrido, String color, String tipo_comb, int precio, Vendedor vendedor, String vidrios, String transmision) {
-        super(id, placa, marca, modelo, tipo_motor, año, recorrido, color, tipo_comb, precio, vendedor);
+    public Auto(int id, String placa, String marca, String modelo, String tipo_motor, int año, int recorrido, String color, String tipo_comb, int precio, Vendedor vendedor,String imagen, String vidrios, String transmision) {
+        super(id, placa, marca, modelo, tipo_motor, año, recorrido, color, tipo_comb, precio, vendedor, imagen);
         this.vidrios = vidrios;
         this.transmision = transmision;
     }
@@ -47,24 +47,24 @@ public class Auto extends Vehiculo implements Serializable{
 
 
 
-    public static Auto ingresarAuto(Scanner sc, String nfilev,Vendedor vendedor){
-        Vehiculo vehiculo= ingresarVehiculo(sc, nfilev,vendedor);
-        System.out.println("Ingrese vidrios:");
-        String vidrios = sc.nextLine();
-        System.out.println("Ingrese transmision");
-        String transmision= sc.nextLine();        
-        Auto auto = new Auto(vehiculo.getId(),vehiculo.getPlaca(), vehiculo.getMarca(), vehiculo.getModelo(), vehiculo.getTipo_motor(), vehiculo.getAño(), vehiculo.getRecorrido(), vehiculo.getColor(), vehiculo.getTipo_comb(), vehiculo.getPrecio(),vehiculo.getVendedor(), vidrios, transmision);
-        return auto;
-    }
-    
-    @Override
-    public void saveArchivo(String nfile){
-        try(PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nfile),true))){
-            pw.println(super.getId()+"|"+super.getVendedor().getId()+"|"+super.getPlaca()+"|"+super.getMarca()+"|"+super.getModelo()+"|"+super.getTipo_motor()+"|"+super.getAño()+"|"+super.getRecorrido()+"|"+this.getColor()+"|"+super.getTipo_comb()+"|"+super.getPrecio()+"|"+this.transmision+"|"+this.vidrios);            
-        } catch(Exception e){
-            System.out.println(e.getMessage());
-        }
-    }
+//    public static Auto ingresarAuto(Scanner sc, String nfilev,Vendedor vendedor){
+//        Vehiculo vehiculo= ingresarVehiculo(sc, nfilev,vendedor);
+//        System.out.println("Ingrese vidrios:");
+//        String vidrios = sc.nextLine();
+//        System.out.println("Ingrese transmision");
+//        String transmision= sc.nextLine();        
+//        Auto auto = new Auto(vehiculo.getId(),vehiculo.getPlaca(), vehiculo.getMarca(), vehiculo.getModelo(), vehiculo.getTipo_motor(), vehiculo.getAño(), vehiculo.getRecorrido(), vehiculo.getColor(), vehiculo.getTipo_comb(), vehiculo.getPrecio(),vehiculo.getVendedor(),vehiculo.getImagen(), vidrios, transmision);
+//        return auto;
+//    }
+//    
+//    @Override
+//    public void saveArchivo(String nfile){
+//        try(PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nfile),true))){
+//            pw.println(super.getId()+"|"+super.getVendedor().getId()+"|"+super.getPlaca()+"|"+super.getMarca()+"|"+super.getModelo()+"|"+super.getTipo_motor()+"|"+super.getAño()+"|"+super.getRecorrido()+"|"+this.getColor()+"|"+super.getTipo_comb()+"|"+super.getPrecio()+"|"+this.transmision+"|"+this.vidrios+"|"+super.getImagen());            
+//        } catch(Exception e){
+//            System.out.println(e.getMessage());
+//        }
+//    }
 
     @Override
     public String toString() {

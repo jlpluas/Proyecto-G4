@@ -32,8 +32,9 @@ public class Vehiculo implements Serializable{
     private String tipo_comb; 
     private int precio;
     private Vendedor vendedor;
+    private String imagen;
 
-    public Vehiculo(int id, String placa, String marca, String modelo, String tipo_motor, int año, int recorrido, String color, String tipo_comb, int precio, Vendedor vendedor) {
+    public Vehiculo(int id, String placa, String marca, String modelo, String tipo_motor, int año, int recorrido, String color, String tipo_comb, int precio, Vendedor vendedor, String imagen) {
         this.id = id;
         this.placa = placa;
         this.marca = marca;
@@ -45,6 +46,7 @@ public class Vehiculo implements Serializable{
         this.tipo_comb = tipo_comb;
         this.precio = precio;
         this.vendedor = vendedor;
+        this.imagen= imagen;
     }
 
     public Vehiculo() {
@@ -139,6 +141,16 @@ public class Vehiculo implements Serializable{
         this.precio = precio;
     }
 
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+    
+    
+
     public void saveArchivo(String nfile){
         try(PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nfile),true))){
             pw.println(this.id+"|"+this.vendedor.getId()+"|"+this.placa+"|"+this.marca+"|"+this.modelo+"|"+this.tipo_motor+"|"+this.año+"|"+this.recorrido+"|"+this.color+"|"+this.tipo_comb+"|"+this.precio);
@@ -174,51 +186,51 @@ public class Vehiculo implements Serializable{
         return 0;
     }
     
-    public static ArrayList<String> readFilePlacas(String nfilev){
-        ArrayList<String> placas = new ArrayList<>();
-        try(Scanner sc = new Scanner(new File(nfilev))){
-            while(sc.hasNextLine()){
-                String line = sc.nextLine();
-                String[] tokens = line.split("\\|");
-                String placau = tokens[2];
-                placas.add(placau);
-            }
-        }catch(Exception e){
-            System.out.println(e.getMessage());
-        }
-        return placas;
-    }
-    
-    public static ArrayList<Vehiculo> vehConPlaca(String nfilev,String placa){
-        ArrayList<Vehiculo> vehiculos=readFileVehiculos(nfilev);
-        for (Vehiculo v:vehiculos){
-            if(v.getPlaca().equals(placa)){
-                vehiculos.add(v);
-            }
-        }
-        return vehiculos;
-    }
+//    public static ArrayList<String> readFilePlacas(String nfilev){
+//        ArrayList<String> placas = new ArrayList<>();
+//        try(Scanner sc = new Scanner(new File(nfilev))){
+//            while(sc.hasNextLine()){
+//                String line = sc.nextLine();
+//                String[] tokens = line.split("\\|");
+//                String placau = tokens[2];
+//                placas.add(placau);
+//            }
+//        }catch(Exception e){
+//            System.out.println(e.getMessage());
+//        }
+//        return placas;
+//    }
+//    
+//    public static ArrayList<Vehiculo> vehConPlaca(String nfilev,String placa){
+//        ArrayList<Vehiculo> vehiculos=readFileVehiculos(nfilev);
+//        for (Vehiculo v:vehiculos){
+//            if(v.getPlaca().equals(placa)){
+//                vehiculos.add(v);
+//            }
+//        }
+//        return vehiculos;
+//    }
            
-    public static ArrayList<Vehiculo> readFileVehiculos(String nfilev){
-        ArrayList<Vehiculo> vs = new ArrayList<>();
-        try(Scanner sc = new Scanner(new File(nfilev))){
-            while(sc.hasNextLine()){
-                String line = sc.nextLine();
-                String[] tokens = line.split("\\|");
-                int idvh = Integer.parseInt(tokens[0]);
-                int anio = Integer.parseInt(tokens[6]);
-                int km = Integer.parseInt(tokens[7]);
-                int precio = Integer.parseInt(tokens[10]);
-                int idvn = Integer.parseInt(tokens[1]);
-                Vendedor vend = Vendedor.searchByID("Vendedores.txt", idvn);
-                Vehiculo v = new Vehiculo(idvh,tokens[2],tokens[3],tokens[4],tokens[5],anio,km,tokens[8],tokens[9],precio,vend);
-                vs.add(v);
-            }
-        }catch(Exception e){
-            System.out.println(e.getMessage());
-        }
-        return vs;
-    }
+//    public static ArrayList<Vehiculo> readFileVehiculos(String nfilev){
+//        ArrayList<Vehiculo> vs = new ArrayList<>();
+//        try(Scanner sc = new Scanner(new File(nfilev))){
+//            while(sc.hasNextLine()){
+//                String line = sc.nextLine();
+//                String[] tokens = line.split("\\|");
+//                int idvh = Integer.parseInt(tokens[0]);
+//                int anio = Integer.parseInt(tokens[6]);
+//                int km = Integer.parseInt(tokens[7]);
+//                int precio = Integer.parseInt(tokens[10]);
+//                int idvn = Integer.parseInt(tokens[1]);
+//                Vendedor vend = Vendedor.searchByID("Vendedores.txt", idvn);
+//                Vehiculo v = new Vehiculo(idvh,tokens[2],tokens[3],tokens[4],tokens[5],anio,km,tokens[8],tokens[9],precio,vend);
+//                vs.add(v);
+//            }
+//        }catch(Exception e){
+//            System.out.println(e.getMessage());
+//        }
+//        return vs;
+//    }
     
     public static boolean verificarplaca(ArrayList<String> placas, String placa){
         for(String x: placas){
@@ -233,35 +245,35 @@ public class Vehiculo implements Serializable{
         return "id= " + id + "\n placa=" + placa + "\n marca=" + marca + "\n modelo=" + modelo + "\n tipo_motor=" + tipo_motor + "\n año=" + año + "\n recorrido=" + recorrido + "\n color=" + color + "\n tipo_comb=" + tipo_comb + "\n precio=" + precio;
     }
     
-    public static Vehiculo ingresarVehiculo(Scanner sc, String nfilev,Vendedor vendedor){
-        ArrayList<String> placas = readFilePlacas(nfilev);
-        int idv = nextID(nfilev);
-        System.out.println("Ingrese placa:");
-        String placa = sc.nextLine();
-        while(verificarplaca(placas,placa)== true){
-            System.out.println("Placa ya registrada, registre otra placa");
-            placa = sc.nextLine();
-        }            
-        System.out.println("Ingrese marca");
-        String marca= sc.nextLine();
-        System.out.println("Ingrese modelo");
-        String modelo= sc.nextLine();
-        System.out.println("Ingrese tipo de motor");
-        String tmotor= sc.nextLine();
-        System.out.println("Ingrese año:");
-        int año = Integer.parseInt(sc.nextLine());
-        System.out.println("Ingrese recorrido");
-        int recorrido= Integer.parseInt(sc.nextLine());
-        System.out.println("Ingrese color:");
-        String color = sc.nextLine();
-        System.out.println("Ingrese tipo de combustible");
-        String tcombustible= sc.nextLine();
-        System.out.println("Ingrese precio:");
-        int precio = Integer.parseInt(sc.nextLine());
-        
-       Vehiculo v= new Vehiculo(idv,placa,marca,modelo,tmotor,año,recorrido,color,tcombustible,precio,vendedor);
-       return v;
-    }
+//    public static Vehiculo ingresarVehiculo(Scanner sc, String nfilev,Vendedor vendedor){
+//        ArrayList<String> placas = readFilePlacas(nfilev);
+//        int idv = nextID(nfilev);
+//        System.out.println("Ingrese placa:");
+//        String placa = sc.nextLine();
+//        while(verificarplaca(placas,placa)== true){
+//            System.out.println("Placa ya registrada, registre otra placa");
+//            placa = sc.nextLine();
+//        }            
+//        System.out.println("Ingrese marca");
+//        String marca= sc.nextLine();
+//        System.out.println("Ingrese modelo");
+//        String modelo= sc.nextLine();
+//        System.out.println("Ingrese tipo de motor");
+//        String tmotor= sc.nextLine();
+//        System.out.println("Ingrese año:");
+//        int año = Integer.parseInt(sc.nextLine());
+//        System.out.println("Ingrese recorrido");
+//        int recorrido= Integer.parseInt(sc.nextLine());
+//        System.out.println("Ingrese color:");
+//        String color = sc.nextLine();
+//        System.out.println("Ingrese tipo de combustible");
+//        String tcombustible= sc.nextLine();
+//        System.out.println("Ingrese precio:");
+//        int precio = Integer.parseInt(sc.nextLine());
+//        
+//       Vehiculo v= new Vehiculo(idv,placa,marca,modelo,tmotor,año,recorrido,color,tcombustible,precio,vendedor);
+//       return v;
+//    }
     
     public static void saveListToFileSer(String nfile, ArrayList<Vehiculo> vehiculos) {
     

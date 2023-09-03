@@ -18,8 +18,8 @@ import java.util.Scanner;
 public class Camioneta extends Vehiculo implements Serializable{
     private String traccion;
 
-    public Camioneta(String traccion, int id, String placa, String marca, String modelo, String tipo_motor, int año, int recorrido, String color, String tipo_comb, int precio, Vendedor vendedor) {
-        super(id, placa, marca, modelo, tipo_motor, año, recorrido, color, tipo_comb, precio,vendedor);
+    public Camioneta(String traccion, int id, String placa, String marca, String modelo, String tipo_motor, int año, int recorrido, String color, String tipo_comb, int precio, Vendedor vendedor, String imagen) {
+        super(id, placa, marca, modelo, tipo_motor, año, recorrido, color, tipo_comb, precio,vendedor,imagen);
         this.traccion = traccion;
     }
 
@@ -34,21 +34,21 @@ public class Camioneta extends Vehiculo implements Serializable{
         this.traccion = traccion;
     }
     
-    public static Camioneta ingresarCamioneta(Scanner sc, String nfilev,Vendedor vendedor) {
-        Vehiculo vehiculo=ingresarVehiculo(sc, nfilev,vendedor);
-        System.out.println("Ingrese la tracción:");
-        String traccion = sc.nextLine();
-        Camioneta camioneta = new Camioneta(traccion, vehiculo.getId(), vehiculo.getPlaca(), vehiculo.getMarca(), vehiculo.getModelo(), vehiculo.getTipo_motor(), vehiculo.getAño(), vehiculo.getRecorrido(), vehiculo.getColor(), vehiculo.getTipo_comb(), vehiculo.getPrecio(),vehiculo.getVendedor());
-        return camioneta;
-    }
-    @Override
-    public void saveArchivo(String nfile){
-        try(PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nfile),true))){
-            pw.println(super.getId()+"|"+super.getVendedor().getId()+"|"+super.getPlaca()+"|"+super.getMarca()+"|"+super.getModelo()+"|"+super.getTipo_motor()+"|"+super.getAño()+"|"+super.getRecorrido()+"|"+this.getColor()+"|"+super.getTipo_comb()+"|"+super.getPrecio()+"|"+this.traccion);            
-        } catch(Exception e){
-            System.out.println(e.getMessage());
-        }
-    }
+//    public static Camioneta ingresarCamioneta(Scanner sc, String nfilev,Vendedor vendedor) {
+//        Vehiculo vehiculo=ingresarVehiculo(sc, nfilev,vendedor);
+//        System.out.println("Ingrese la tracción:");
+//        String traccion = sc.nextLine();
+//        Camioneta camioneta = new Camioneta(traccion, vehiculo.getId(), vehiculo.getPlaca(), vehiculo.getMarca(), vehiculo.getModelo(), vehiculo.getTipo_motor(), vehiculo.getAño(), vehiculo.getRecorrido(), vehiculo.getColor(), vehiculo.getTipo_comb(), vehiculo.getPrecio(),vehiculo.getVendedor(),vehiculo.getImagen());
+//        return camioneta;
+//    }
+//    @Override
+//    public void saveArchivo(String nfile){
+//        try(PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nfile),true))){
+//            pw.println(super.getId()+"|"+super.getVendedor().getId()+"|"+super.getPlaca()+"|"+super.getMarca()+"|"+super.getModelo()+"|"+super.getTipo_motor()+"|"+super.getAño()+"|"+super.getRecorrido()+"|"+this.getColor()+"|"+super.getTipo_comb()+"|"+super.getPrecio()+"|"+this.traccion);            
+//        } catch(Exception e){
+//            System.out.println(e.getMessage());
+//        }
+//    }
 
     @Override
     public String toString() {

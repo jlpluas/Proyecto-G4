@@ -18,7 +18,6 @@ public class Oferta {
     private double precio_oferta;
     private String correo;
     private Vehiculo vehiculo;
-    private String imagen;
     public static ArrayList<Oferta> ofertasVehiculos=new ArrayList<>();
 
     public Oferta(double precio_oferta, String correo, Vehiculo vehiculo) {
@@ -51,14 +50,7 @@ public class Oferta {
         this.vehiculo = vehiculo;
     }
 
-    public String getImagen() {
-        return imagen;
-    }
 
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
-    }
-    
     
    @Override
    public String toString(){
