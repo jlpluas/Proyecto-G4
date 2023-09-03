@@ -24,10 +24,6 @@ public class MenuController implements Initializable {
     @FXML
     private Button registrarVehiculo;
     @FXML
-    private Button buscarVehiculo;
-    @FXML
-    private Button ofertarVehiculo;
-    @FXML
     private Button irperfil;
 
     /**
@@ -44,18 +40,18 @@ public class MenuController implements Initializable {
     }
 
     @FXML
-    private void ofertarV(ActionEvent event) throws IOException{
-        App.setRoot("ofertarV");
+    private void verperfil(MouseEvent event) throws IOException{
+        App.setRoot("usuarioinfo");
     }
 
     @FXML
-    private void buscar(ActionEvent event) throws IOException {
+    private void OfertarV(ActionEvent event) throws IOException {
         App.setRoot("buscar");
     }
 
     @FXML
-    private void verperfil(MouseEvent event) throws IOException{
-        App.setRoot("usuarioinfo");
+    private void AceptarO(ActionEvent event) throws IOException {
+        App.setRoot("aceptarO");
     }
     
 }
