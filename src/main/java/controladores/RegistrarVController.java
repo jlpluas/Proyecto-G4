@@ -153,18 +153,22 @@ public class RegistrarVController implements Initializable {
         vehiculoActual.setColor(datosIngresados.get(6));
         vehiculoActual.setTipo_comb(datosIngresados.get(7));
         vehiculoActual.setPrecio(Integer.parseInt(datosIngresados.get(8)));
+        
+        if (datosIngresados.size()==10 ){
         vehiculoActual.setImagen(datosIngresados.get(9));
-                
-        if (vehiculoActual instanceof Auto) {
+        System.out.println(datosIngresados.get(9));
+        Vehiculo moto = vehiculoActual;}
+        
+        if (datosIngresados.size()==12 ) {
             Auto auto = (Auto) vehiculoActual;
-            auto.setVidrios(datosIngresados.get(10));
-            auto.setTransmision(datosIngresados.get(11));
+            auto.setVidrios(datosIngresados.get(9));
+            auto.setTransmision(datosIngresados.get(10));
+            vehiculoActual.setImagen(datosIngresados.get(11));
             
-        } else if (vehiculoActual instanceof Camioneta) {
+        } if (datosIngresados.size()==11) {
             Camioneta camioneta = (Camioneta) vehiculoActual;
-            camioneta.setTraccion(datosIngresados.get(10));
-        } else if (vehiculoActual instanceof Vehiculo) {
-            Vehiculo moto = vehiculoActual;
+            camioneta.setTraccion(datosIngresados.get(9));
+            vehiculoActual.setImagen(datosIngresados.get(10));
         }
     }
    

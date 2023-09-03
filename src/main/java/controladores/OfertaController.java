@@ -39,17 +39,19 @@ public class OfertaController implements Initializable {
     private ImageView img;
     @FXML
     private VBox vInfo;
-    
-    private Label lInfo;
+    @FXML
+    private Label lInfo= new Label();
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        OfertaController oc= new OfertaController();
-        oc.datosVeh(FiltradoController.getVhSelec());
-        
+           lInfo.setText(FiltradoController.getVhSelec().toString());
+           vInfo.getChildren().add(lInfo);
+           System.out.println(FiltradoController.getVhSelec().toString());
+           img.setImage(new Image("img/"+FiltradoController.getVhSelec().getImagen()));
+           
     }    
 
     @FXML
@@ -74,11 +76,9 @@ public class OfertaController implements Initializable {
         
 }
     
-    public void datosVeh(Vehiculo v){
-        //lInfo.setText(FiltradoController.getVhSelec().toString());
-        img.setImage(new Image("img/"+FiltradoController.getVhSelec().getImagen()));
+
         
-    }
+    
 
     @FXML
     private void regresar(MouseEvent event) throws IOException {
