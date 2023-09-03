@@ -62,6 +62,11 @@
                   <Font name="Bell MT" size="25.0" />
                </font>
             </Button>
+            <Button fx:id="irperfil" mnemonicParsing="false" onMouseClicked="#verperfil" text="Ver perfil" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+               <font>
+                  <Font name="Bell MT" size="25.0" />
+               </font>
+            </Button>
          </children>
       </GridPane>
    </center>
