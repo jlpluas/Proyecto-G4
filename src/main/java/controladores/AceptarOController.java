@@ -71,7 +71,7 @@ public class AceptarOController implements Initializable {
     public ArrayList<Oferta> filtrarporusuario(ArrayList<Oferta> ofertas ,Usuario usuario){
         ArrayList<Oferta> lstofertas= new ArrayList<>();
         for(Oferta oferta:ofertas){
-            if (oferta.getVehiculo().getVendedor().getCorreo_electronico().equals(usuario.getCorreo_electronico()))
+            if (oferta.getVehiculo().getUsuario().getCorreo_electronico().equals(usuario.getCorreo_electronico()))
                 lstofertas.add(oferta);   
         }
         return lstofertas;

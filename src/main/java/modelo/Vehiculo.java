@@ -31,10 +31,10 @@ public class Vehiculo implements Serializable{
     private String color; 
     private String tipo_comb; 
     private int precio;
-    private Vendedor vendedor;
+    private Usuario usuario;
     private String imagen;
 
-    public Vehiculo(int id, String placa, String marca, String modelo, String tipo_motor, int año, int recorrido, String color, String tipo_comb, int precio, Vendedor vendedor, String imagen) {
+    public Vehiculo(int id, String placa, String marca, String modelo, String tipo_motor, int año, int recorrido, String color, String tipo_comb, int precio, Usuario usuario, String imagen) {
         this.id = id;
         this.placa = placa;
         this.marca = marca;
@@ -45,7 +45,7 @@ public class Vehiculo implements Serializable{
         this.color = color;
         this.tipo_comb = tipo_comb;
         this.precio = precio;
-        this.vendedor = vendedor;
+        this.usuario = usuario;
         this.imagen= imagen;
     }
 
@@ -61,14 +61,15 @@ public class Vehiculo implements Serializable{
         this.id = id;
     }
 
-    public Vendedor getVendedor() {
-        return vendedor;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setVendedor(Vendedor vendedor) {
-        this.vendedor = vendedor;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
-    
+
+
     public String getPlaca() {
         return placa;
     }
@@ -153,7 +154,7 @@ public class Vehiculo implements Serializable{
 
     public void saveArchivo(String nfile){
         try(PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nfile),true))){
-            pw.println(this.id+"|"+this.vendedor.getId()+"|"+this.placa+"|"+this.marca+"|"+this.modelo+"|"+this.tipo_motor+"|"+this.año+"|"+this.recorrido+"|"+this.color+"|"+this.tipo_comb+"|"+this.precio);
+            pw.println(this.id+"|"+this.usuario.getId()+"|"+this.placa+"|"+this.marca+"|"+this.modelo+"|"+this.tipo_motor+"|"+this.año+"|"+this.recorrido+"|"+this.color+"|"+this.tipo_comb+"|"+this.precio);
         } catch(Exception e){
             System.out.println(e.getMessage());
         }

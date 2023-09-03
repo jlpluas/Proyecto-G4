@@ -62,7 +62,7 @@ public class OfertaController implements Initializable {
         ArrayList<Oferta> ofertas = Oferta.readListFromFileSer("oferta.ser");
         ofertas.add(of);
         Oferta.saveListToFileSer("oferta.ser", ofertas);
-        Util.enviarCorreo(FiltradoController.getVhSelec().getVendedor().getCorreo_electronico(),IngresoController.getCorreo() , IngresoController.getContraseña(), of);
+        Util.enviarCorreo(FiltradoController.getVhSelec().getUsuario().getCorreo_electronico(),IngresoController.getCorreo() , IngresoController.getContraseña(), of);
         
         App.setRoot("filtrado");
         }
