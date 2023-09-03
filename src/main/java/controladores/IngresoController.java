@@ -35,8 +35,20 @@ public class IngresoController{
     private Button btnIngresar;
     
     static Usuario usuarioing;
+    
+    static String correo;
+    static String contraseña;
+
+    public static String getCorreo() {
+        return correo;
+    }
+
+    public static String getContraseña() {
+        return contraseña;
+    }
 
 
+    
     @FXML
     private void registrarse(ActionEvent event) throws IOException {
         App.setRoot("registros");
@@ -47,6 +59,9 @@ public class IngresoController{
         String usuario = txtfieldUsuario.getText();
         String contraseña = txtfieldContraseña.getText(); 
         
+        usuario = txtfieldUsuario.getText();
+        contraseña = txtfieldContraseña.getText();
+                
         ArrayList<Usuario> usuarios=Usuario.readListFromFileSer("usuarios.ser");
         ArrayList<String> correos= new ArrayList<>();
         ArrayList<String> contraseñas= new ArrayList<>();

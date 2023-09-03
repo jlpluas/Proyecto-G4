@@ -5,6 +5,8 @@
 package controladores;
 
 import ec.edu.espol.proyectog4.App;
+import ec.edu.espol.util.Util;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -18,6 +20,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import modelo.Oferta;
 import modelo.Usuario;
 import modelo.Vehiculo;
@@ -49,16 +53,34 @@ public class OfertaController implements Initializable {
 
     @FXML
     public void enviarOferta(MouseEvent event) throws IOException {
-        Oferta of = new Oferta(Float.parseFloat(ofertaIn.getText()), "s", FiltradoController.getVhSelec());
+        float valor = 0;
+        if (!ofertaIn.getText().equals("")) {
+            valor = Float.parseFloat(ofertaIn.getText());
+        }
+        if (valor != 0) {
+        Oferta of = new Oferta(Float.parseFloat(ofertaIn.getText()), IngresoController.getCorreo(), FiltradoController.getVhSelec());
         ArrayList<Oferta> ofertas = Oferta.readListFromFileSer("oferta.ser");
         ofertas.add(of);
         Oferta.saveListToFileSer("oferta.ser", ofertas);
+        Util.enviarCorreo(FiltradoController.getVhSelec().getVendedor().getCorreo_electronico(),IngresoController.getCorreo() , IngresoController.getContraseña(), of);
+        
         App.setRoot("filtrado");
+        }
+        else if(valor==0){
+            Alert a = new Alert(Alert.AlertType.ERROR, "Debe llenar el campo de la oferta");
+            a.show();
+        }
+        
 }
     
     public void datosVeh(Vehiculo v){
         lInfo.setText(FiltradoController.getVhSelec().toString());
-        img.setImage(new Image("img/"+ "     "));
+        
+            FileChooser fc= new FileChooser();
+            fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Imágenes","*.jpg","*.jpeg","*.png"));
+            File archSelec=fc.showOpenDialog(new Stage());
+            //return (archSelec != null)? archSelec.ge
+        
         
         
     }
