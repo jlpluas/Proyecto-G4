@@ -56,13 +56,33 @@ public class BuscarController implements Initializable {
     }    
     
     public void darvalores(){
-        recorridomin = Integer.parseInt(rmin.getText());
-        recorridomax = Integer.parseInt(rmax.getText());
-        añomin = Integer.parseInt(amin.getText());
-        añomax = Integer.parseInt(amax.getText());
-        preciomin = Integer.parseInt(pmin.getText());
-        preciomax = Integer.parseInt(pmax.getText());
+        float recorridomin = 0;
+        if (!rmin.getText().equals("")) {
+            recorridomin = Float.parseFloat(rmin.getText());
+        }
+        float añomin = 0;
+        if (!amin.getText().equals("")) {
+            añomin = Float.parseFloat(amin.getText());
+        }
+        float preciomin = 0;
+        if (!pmin.getText().equals("")) {
+            preciomin = Float.parseFloat(pmin.getText());
+        }
+        float recorridomax = Float.MAX_VALUE;
+        if (!rmax.getText().equals("")) {
+            recorridomax = Float.parseFloat(rmax.getText());
+        }
+        float añomax = Float.MAX_VALUE;
+        if (!amax.getText().equals("")) {
+            añomax = Float.parseFloat(amax.getText());
+        }
+        float preciomax = Float.MAX_VALUE;
+        if (!pmax.getText().equals("")) {
+            preciomax = Float.parseFloat(pmax.getText());
+        }
+
         tipoVehiculo= tipoV.getSelectionModel().getSelectedItem();
+        
     }
 
     @FXML
