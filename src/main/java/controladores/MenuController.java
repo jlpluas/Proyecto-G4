@@ -37,7 +37,7 @@ public class MenuController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-
+    
     @FXML
     private void registrarV(ActionEvent event) throws IOException {
         App.setRoot("registrarV"); 
