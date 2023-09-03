@@ -33,7 +33,8 @@ public class IngresoController{
     private TextField txtfieldContraseña;
     @FXML
     private Button btnIngresar;
-
+    
+    static Usuario usuarioing;
 
 
     @FXML
@@ -57,7 +58,7 @@ public class IngresoController{
         if (correos.contains(usuario)&& contraseñas.contains(contraseña)){
             mostrarAlertaC();
             App.setRoot("menu");
-        
+            usuarioing(usuarios);
         } else 
             mostrarAlertaI();
 
@@ -76,5 +77,13 @@ public class IngresoController{
         alerta.show();
     }    
     
+    private void usuarioing(ArrayList<Usuario> listau){
+        for (Usuario usuario:listau){
+            if (usuario.getCorreo_electronico().equals(txtfieldUsuario.getText()))
+                usuarioing=usuario;
+        
+        }
+    
+    }
     
 }
