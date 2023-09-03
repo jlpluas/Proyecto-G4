@@ -243,7 +243,7 @@ public class Vehiculo implements Serializable{
 
     @Override
     public String toString() {
-        return "id=" + id + "\n placa=" + placa + "\n marca=" + marca + "\n modelo=" + modelo + "\n tipo_motor=" + tipo_motor + "\n año=" + año + "\n recorrido=" + recorrido + "\n color=" + color + "\n tipo_comb=" + tipo_comb + "\n precio=" + precio;
+        return "id= " + id + "\n placa=" + placa + "\n marca=" + marca + "\n modelo=" + modelo + "\n tipo_motor=" + tipo_motor + "\n año=" + año + "\n recorrido=" + recorrido + "\n color=" + color + "\n tipo_comb=" + tipo_comb + "\n precio=" + precio;
     }
     
 //    public static Vehiculo ingresarVehiculo(Scanner sc, String nfilev,Vendedor vendedor){
