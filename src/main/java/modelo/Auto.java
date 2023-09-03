@@ -20,8 +20,8 @@ public class Auto extends Vehiculo implements Serializable{
     private String vidrios;
     private String transmision; 
 
-    public Auto(int id, String placa, String marca, String modelo, String tipo_motor, int año, int recorrido, String color, String tipo_comb, int precio, Vendedor vendedor,String imagen, String vidrios, String transmision) {
-        super(id, placa, marca, modelo, tipo_motor, año, recorrido, color, tipo_comb, precio, vendedor, imagen);
+    public Auto(int id, String placa, String marca, String modelo, String tipo_motor, int año, int recorrido, String color, String tipo_comb, int precio, Usuario usuario,String imagen, String vidrios, String transmision) {
+        super(id, placa, marca, modelo, tipo_motor, año, recorrido, color, tipo_comb, precio, usuario, imagen);
         this.vidrios = vidrios;
         this.transmision = transmision;
     }

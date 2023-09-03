@@ -18,8 +18,8 @@ import java.util.Scanner;
 public class Camioneta extends Vehiculo implements Serializable{
     private String traccion;
 
-    public Camioneta(String traccion, int id, String placa, String marca, String modelo, String tipo_motor, int año, int recorrido, String color, String tipo_comb, int precio, Vendedor vendedor, String imagen) {
-        super(id, placa, marca, modelo, tipo_motor, año, recorrido, color, tipo_comb, precio,vendedor,imagen);
+    public Camioneta(String traccion, int id, String placa, String marca, String modelo, String tipo_motor, int año, int recorrido, String color, String tipo_comb, int precio, Usuario usuario, String imagen) {
+        super(id, placa, marca, modelo, tipo_motor, año, recorrido, color, tipo_comb, precio,usuario,imagen);
         this.traccion = traccion;
     }
 
