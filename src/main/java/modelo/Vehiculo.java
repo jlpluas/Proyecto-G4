@@ -15,7 +15,6 @@ import java.io.PrintWriter;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 /**
  *
  * @author romiy
@@ -295,5 +294,5 @@ public class Vehiculo implements Serializable{
             System.out.println(c.getMessage());
         }
         return vehiculos;
-    } 
+    }
 }

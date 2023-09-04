@@ -13,6 +13,7 @@ import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.Properties;
 import java.util.Scanner;
 import javax.mail.Message;
@@ -22,6 +23,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import modelo.Oferta;
+import modelo.Vehiculo;
 
 
 public class Util {
@@ -147,5 +149,6 @@ public class Util {
         catch (MessagingException me) {
             me.printStackTrace();
         }
-    }        
+    }
+    
 }
