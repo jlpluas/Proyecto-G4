@@ -49,7 +49,7 @@ public class RegistrosController implements Initializable, Serializable {
     private void registrar(MouseEvent event) throws IOException {
         if (txtfieldNombre.getText().equals("") ||txtfieldApellido.getText().equals("")||txtfieldOrganizacion.getText().equals("")||txtfieldCorreo.getText().equals("")||txtfieldContraseña.getText().equals("")){
             Alert alerta= new Alert(AlertType.ERROR);
-            alerta.setContentText("Campos Incompletos");
+            alerta.setContentText("Campos incompletos");
             alerta.show();   
         } else if(!txtfieldCorreo.getText().contains("@")) {
             Alert alerta= new Alert(AlertType.ERROR);
@@ -80,7 +80,7 @@ public class RegistrosController implements Initializable, Serializable {
 
     @FXML
     private void regresar(MouseEvent event) throws IOException {
-        App.setRoot("Menu");
+        App.setRoot("ingreso");
     }
     
     
