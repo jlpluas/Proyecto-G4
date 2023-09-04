@@ -4,7 +4,10 @@
  */
 package controladores;
 
+import ec.edu.espol.proyectog4.App;
 import ec.edu.espol.util.Util;
+import java.io.IOException;
+import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -25,7 +28,7 @@ import modelo.Usuario;
  *
  * @author USER
  */
-public class AceptarOController implements Initializable {
+public class AceptarOController implements Initializable, Serializable {
 
     @FXML
     private VBox vboferta;
@@ -87,6 +90,7 @@ public class AceptarOController implements Initializable {
     }
 
     @FXML
-    private void regresar(MouseEvent event) {
+    private void regresar(MouseEvent event) throws IOException {
+        App.setRoot("Menu");
     }
 }

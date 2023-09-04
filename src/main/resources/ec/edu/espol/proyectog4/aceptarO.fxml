@@ -13,7 +13,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controladores.AceptarOController">
    <top>
-      <Label text="TABLA OFERTAS " BorderPane.alignment="CENTER">
+      <Label text="Ofertas Recibidas" BorderPane.alignment="CENTER">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
@@ -21,7 +21,7 @@
             <Insets top="10.0" />
          </BorderPane.margin>
          <font>
-            <Font size="17.0" />
+            <Font name="Bell MT" size="36.0" />
          </font>
       </Label>
    </top>
@@ -38,18 +38,27 @@
           <RowConstraints maxHeight="345.0" minHeight="10.0" prefHeight="273.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Correo" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-            <Label text="Precio " GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <Label text="Correo" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Bell MT" size="15.0" />
+               </font></Label>
+            <Label text="Precio " GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Bell MT" size="15.0" />
+               </font></Label>
             <VBox fx:id="vbcorreo" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2" />
             <VBox fx:id="vboferta" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <VBox fx:id="vbbotones" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
             <TextField fx:id="placa" GridPane.columnIndex="1" />
             <Label text="Ingresar placa: " GridPane.halignment="RIGHT">
                <font>
-                  <Font size="16.0" />
+                  <Font name="Bell MT" size="18.0" />
                </font>
             </Label>
-            <Button mnemonicParsing="false" text="Buscar " GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Button mnemonicParsing="false" text="Buscar " GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <font>
+                  <Font name="Bell MT" size="18.0" />
+               </font></Button>
          </children>
       </GridPane>
    </center>

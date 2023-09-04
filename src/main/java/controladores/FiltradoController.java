@@ -6,6 +6,7 @@ package controladores;
 
 import ec.edu.espol.proyectog4.App;
 import java.io.IOException;
+import java.io.Serializable;
 import modelo.Auto;
 import modelo.Vehiculo;
 import modelo.Camioneta;
@@ -32,7 +33,7 @@ import javafx.stage.Stage;
  *
  * @author USER
  */
-public class FiltradoController implements Initializable {
+public class FiltradoController implements Initializable , Serializable{
 
     @FXML
     private TableView<Vehiculo> tabla;

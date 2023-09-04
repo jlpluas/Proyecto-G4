@@ -10,6 +10,7 @@ import modelo.Auto;
 import modelo.Vehiculo;
 import modelo.Camioneta;
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,7 +37,7 @@ import javafx.stage.*;
  *
  * @author USER
  */
-public class RegistrarVController implements Initializable {
+public class RegistrarVController implements Initializable, Serializable {
 
     @FXML
     private ComboBox<String> Vbox_tipoV;
@@ -46,9 +47,7 @@ public class RegistrarVController implements Initializable {
     private VBox v1;
     @FXML
     private VBox v2;
-    @FXML
     Button subirImagen=new Button("Subir Imagen");
-    @FXML
     TextField imagenRuta=new TextField();
     
     private ArrayList<String> datosIngresados = new ArrayList<>();
