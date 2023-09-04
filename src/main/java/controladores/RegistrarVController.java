@@ -31,6 +31,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.event.*;
 import javafx.stage.*;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 
 /**
  * FXML Controller class
@@ -201,20 +203,29 @@ public class RegistrarVController implements Initializable, Serializable {
         App.setRoot("menu");
     }
     
-    private void subirImagen(){
-        subirImagen.setOnAction(eh->{
-        
-            FileChooser fc=new FileChooser();
-            fc.setInitialDirectory(new File("/"));
-            fc.getExtensionFilters().addAll(
-                    new FileChooser.ExtensionFilter("Imagen","*.png", "*.jpeg", "*.jpg"));
-            File selectedFile=fc.showOpenDialog(null);
-            
-            if(selectedFile !=null)
-                imagenRuta.setText(selectedFile.getName());
-            else
-                System.out.println("file is not valid");
-            
-        });
-    }
+
+    
+    private void subirImagen() {
+    subirImagen.setOnAction(eh -> {
+        FileChooser fc = new FileChooser();
+        fc.setInitialDirectory(new File("/"));
+        fc.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Imagen", "*.png", "*.jpeg", "*.jpg"));
+        File selectedFile = fc.showOpenDialog(null);
+
+        if (selectedFile != null) {
+            String imageName = selectedFile.getName();
+            try {
+                File destination = new File("src/main/resources/img/" + imageName);
+                Files.copy(selectedFile.toPath(), destination.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                imagenRuta.setText(imageName);
+            } catch (IOException ex) {
+                System.out.println("Error al copiar la imagen: " + ex.getMessage());
+            }
+        } else {
+            System.out.println("Archivo no válido");
+        }
+    });
+}
+
 }
