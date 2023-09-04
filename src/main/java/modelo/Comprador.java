@@ -72,65 +72,65 @@ public class Comprador {
     public void setClave(String clave) {
         this.clave = clave;
     }
-    public void saveArchivo(String nfile){
-        try(PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nfile),true))){
-            pw.println(this.nombres+"|"+this.apellidos+"|"+this.organizacion+"|"+this.correo_electronico+"|"+this.clave);
-            
-        } catch(Exception e){
-            System.out.println(e.getMessage());
-        }
-    }
-    
-    public static ArrayList<String> readFileCorreos(String nfile){
-        ArrayList<String> correos = new ArrayList<>();
-        try(Scanner sc = new Scanner(new File(nfile))){
-            while(sc.hasNextLine()){
-                String line = sc.nextLine();
-                String[] tokens = line.split("\\|");
-                String correo_elec = tokens[4];
-                correos.add(correo_elec);
-            }
-        }catch(Exception e){
-            System.out.println(e.getMessage());
-        }
-        return correos;
-    }
-    
-    public static ArrayList<String> readFileClaves(String nfile){
-        ArrayList<String> claves = new ArrayList<>();
-        try(Scanner sc = new Scanner(new File(nfile))){
-            while(sc.hasNextLine()){
-                String line = sc.nextLine();
-                String[] tokens = line.split("\\|");
-                String correo_elec = tokens[5];
-                claves.add(correo_elec);
-            }
-        }catch(Exception e){
-            System.out.println(e.getMessage());
-        }
-        return claves;
-    }
-    
-    public static boolean validarCredenciales(String correo, String cv, String nfile){
-        Boolean correoin = false;
-        ArrayList<String> correos_dados = readFileCorreos(nfile);
-        for (String c : correos_dados) {
-            if(c.equals(correo)==true)
-                correoin = true; 
-        }
-        Boolean clavein = false;
-        ArrayList<String> claves = readFileClaves(nfile);
-        try{
-            String password = toHexString(getSHA(cv));
-            for (String c : claves) {
-                if(c.equals(password)==true)
-                    clavein = true;
-            }
-        }catch (NoSuchAlgorithmException e){
-                System.out.println("Exception thrown for incorrect algorithm: " + e.getMessage());
-            }
-        return correoin && clavein;
-    }
+//    public void saveArchivo(String nfile){
+//        try(PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nfile),true))){
+//            pw.println(this.nombres+"|"+this.apellidos+"|"+this.organizacion+"|"+this.correo_electronico+"|"+this.clave);
+//            
+//        } catch(Exception e){
+//            System.out.println(e.getMessage());
+//        }
+//    }
+//    
+//    public static ArrayList<String> readFileCorreos(String nfile){
+//        ArrayList<String> correos = new ArrayList<>();
+//        try(Scanner sc = new Scanner(new File(nfile))){
+//            while(sc.hasNextLine()){
+//                String line = sc.nextLine();
+//                String[] tokens = line.split("\\|");
+//                String correo_elec = tokens[4];
+//                correos.add(correo_elec);
+//            }
+//        }catch(Exception e){
+//            System.out.println(e.getMessage());
+//        }
+//        return correos;
+//    }
+//    
+//    public static ArrayList<String> readFileClaves(String nfile){
+//        ArrayList<String> claves = new ArrayList<>();
+//        try(Scanner sc = new Scanner(new File(nfile))){
+//            while(sc.hasNextLine()){
+//                String line = sc.nextLine();
+//                String[] tokens = line.split("\\|");
+//                String correo_elec = tokens[5];
+//                claves.add(correo_elec);
+//            }
+//        }catch(Exception e){
+//            System.out.println(e.getMessage());
+//        }
+//        return claves;
+//    }
+//    
+//    public static boolean validarCredenciales(String correo, String cv, String nfile){
+//        Boolean correoin = false;
+//        ArrayList<String> correos_dados = readFileCorreos(nfile);
+//        for (String c : correos_dados) {
+//            if(c.equals(correo)==true)
+//                correoin = true; 
+//        }
+//        Boolean clavein = false;
+//        ArrayList<String> claves = readFileClaves(nfile);
+//        try{
+//            String password = toHexString(getSHA(cv));
+//            for (String c : claves) {
+//                if(c.equals(password)==true)
+//                    clavein = true;
+//            }
+//        }catch (NoSuchAlgorithmException e){
+//                System.out.println("Exception thrown for incorrect algorithm: " + e.getMessage());
+//            }
+//        return correoin && clavein;
+//    }
     
         
 //    public static void nextComprador(Scanner sc,String nfile){

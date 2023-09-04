@@ -100,93 +100,93 @@ public class Usuario implements Serializable{
     public String toString() {
         return "Usuario {" + "id=" + id + ", nombres=" + nombres + ", apellidos=" + apellidos + ", organizacion=" + organizacion + ", correo_electronico=" + correo_electronico + ", clave=" + clave;
     }
-    
-    public void saveArchivo(String nfile){
-        try(PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nfile),true))){
-            pw.println(this.id+"|"+this.nombres+"|"+this.apellidos+"|"+this.organizacion+"|"+this.correo_electronico+"|"+this.clave);
-            
-        } catch(Exception e){
-            System.out.println(e.getMessage());
-        }
-    }
-    
-    public static ArrayList<String> readFileCorreos(String nfile) {
-        ArrayList<String> correos = new ArrayList<>();
-        try (Scanner sc = new Scanner(new File(nfile))) {
-            while (sc.hasNextLine()) {
-                String line = sc.nextLine();
-                String[] tokens = line.split("\\|");
-                String correo_elec = tokens[4];
-                correos.add(correo_elec);
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return correos;
-    }
-
-    public static ArrayList<String> readFileClaves(String nfile){
-        ArrayList<String> claves = new ArrayList<>();
-        try(Scanner sc = new Scanner(new File(nfile))){
-            while(sc.hasNextLine()){
-                String line = sc.nextLine();
-                String[] tokens = line.split("\\|");
-                String correo_elec = tokens[5];
-                claves.add(correo_elec);
-            }
-        }catch(Exception e){
-            System.out.println(e.getMessage());
-        }
-        return claves;
-    }
-    
-    public static ArrayList<Usuario> readFileUsuarios(String nfile) {
-        ArrayList<Usuario> usuarios = new ArrayList<>();
-        try (Scanner sc = new Scanner(new File(nfile))) {
-            while (sc.hasNextLine()) {
-                String line = sc.nextLine();
-                String[] tokens = line.split("\\|");
-                int ids = Integer.parseInt(tokens[0]);
-                Usuario usua = new Usuario(ids,tokens[1],tokens[2],tokens[3],tokens[4],tokens[5]);
-                usuarios.add(usua);
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return usuarios;
-    }
-
-    public static boolean validarCredenciales(String correo, String cv, String nfile){
-        Boolean correoin = false;
-        ArrayList<String> correos_dados = readFileCorreos(nfile);
-        for (String c : correos_dados) {
-            if(c.equals(correo)==true)
-                correoin = true; 
-        }
-        Boolean clavein = false;
-        ArrayList<String> claves = readFileClaves(nfile);
-        try{
-            String password = toHexString(getSHA(cv));
-            for (String c : claves) {
-                if(c.equals(password)==true)
-                    clavein = true;
-            }
-        }catch (NoSuchAlgorithmException e){
-                System.out.println("Exception thrown for incorrect algorithm: " + e.getMessage());
-            }
-        return correoin && clavein;
-    }
-
-    public static Vendedor searchByCorreo(ArrayList<Vendedor> vendedores, String correo){
-        for(Vendedor x: vendedores){
-            if(x.getCorreo_electronico().equals(correo)) {
-                return x;
-            } else {
-                System.out.println("Vendedor no encontrado");
-            }
-        }
-        return null;
-    }    
+//    
+//    public void saveArchivo(String nfile){
+//        try(PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nfile),true))){
+//            pw.println(this.id+"|"+this.nombres+"|"+this.apellidos+"|"+this.organizacion+"|"+this.correo_electronico+"|"+this.clave);
+//            
+//        } catch(Exception e){
+//            System.out.println(e.getMessage());
+//        }
+//    }
+//    
+//    public static ArrayList<String> readFileCorreos(String nfile) {
+//        ArrayList<String> correos = new ArrayList<>();
+//        try (Scanner sc = new Scanner(new File(nfile))) {
+//            while (sc.hasNextLine()) {
+//                String line = sc.nextLine();
+//                String[] tokens = line.split("\\|");
+//                String correo_elec = tokens[4];
+//                correos.add(correo_elec);
+//            }
+//        } catch (Exception e) {
+//            System.out.println(e.getMessage());
+//        }
+//        return correos;
+//    }
+//
+//    public static ArrayList<String> readFileClaves(String nfile){
+//        ArrayList<String> claves = new ArrayList<>();
+//        try(Scanner sc = new Scanner(new File(nfile))){
+//            while(sc.hasNextLine()){
+//                String line = sc.nextLine();
+//                String[] tokens = line.split("\\|");
+//                String correo_elec = tokens[5];
+//                claves.add(correo_elec);
+//            }
+//        }catch(Exception e){
+//            System.out.println(e.getMessage());
+//        }
+//        return claves;
+//    }
+//    
+//    public static ArrayList<Usuario> readFileUsuarios(String nfile) {
+//        ArrayList<Usuario> usuarios = new ArrayList<>();
+//        try (Scanner sc = new Scanner(new File(nfile))) {
+//            while (sc.hasNextLine()) {
+//                String line = sc.nextLine();
+//                String[] tokens = line.split("\\|");
+//                int ids = Integer.parseInt(tokens[0]);
+//                Usuario usua = new Usuario(ids,tokens[1],tokens[2],tokens[3],tokens[4],tokens[5]);
+//                usuarios.add(usua);
+//            }
+//        } catch (Exception e) {
+//            System.out.println(e.getMessage());
+//        }
+//        return usuarios;
+//    }
+//
+//    public static boolean validarCredenciales(String correo, String cv, String nfile){
+//        Boolean correoin = false;
+//        ArrayList<String> correos_dados = readFileCorreos(nfile);
+//        for (String c : correos_dados) {
+//            if(c.equals(correo)==true)
+//                correoin = true; 
+//        }
+//        Boolean clavein = false;
+//        ArrayList<String> claves = readFileClaves(nfile);
+//        try{
+//            String password = toHexString(getSHA(cv));
+//            for (String c : claves) {
+//                if(c.equals(password)==true)
+//                    clavein = true;
+//            }
+//        }catch (NoSuchAlgorithmException e){
+//                System.out.println("Exception thrown for incorrect algorithm: " + e.getMessage());
+//            }
+//        return correoin && clavein;
+//    }
+//
+//    public static Vendedor searchByCorreo(ArrayList<Vendedor> vendedores, String correo){
+//        for(Vendedor x: vendedores){
+//            if(x.getCorreo_electronico().equals(correo)) {
+//                return x;
+//            } else {
+//                System.out.println("Vendedor no encontrado");
+//            }
+//        }
+//        return null;
+//    }    
     
 //    public static void nextUsuario(Scanner sc, String nfileUsuarios) {
 //        int id_usuario = nextID(nfileUsuarios);

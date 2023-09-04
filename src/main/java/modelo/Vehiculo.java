@@ -148,43 +148,43 @@ public class Vehiculo implements Serializable{
     public void setImagen(String imagen) {
         this.imagen = imagen;
     }
-    
-    
-
-    public void saveArchivo(String nfile){
-        try(PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nfile),true))){
-            pw.println(this.id+"|"+this.usuario.getId()+"|"+this.placa+"|"+this.marca+"|"+this.modelo+"|"+this.tipo_motor+"|"+this.año+"|"+this.recorrido+"|"+this.color+"|"+this.tipo_comb+"|"+this.precio);
-        } catch(Exception e){
-            System.out.println(e.getMessage());
-        }
-    }
-    
-    public static Vehiculo searchByID(ArrayList<Vehiculo> vehiculos, int id){
-        for(Vehiculo x: vehiculos){
-            if(x.id == id)
-                return x;
-        }
-        return null;
-    }
-    
-    public static int searchPosByPlaca(String nfilev,String placa){
-        ArrayList<String> placas = new ArrayList<>();
-        try(Scanner sc = new Scanner(new File(nfilev))){
-            while(sc.hasNextLine()){
-                String line = sc.nextLine();
-                String[] tokens = line.split("\\|");
-                String placau = tokens[2];
-                placas.add(placau);
-            }
-        }catch(Exception e){
-            System.out.println(e.getMessage());
-        }
-        for(int i = 0;i<placas.size();i++){
-            if(placas.get(i).equals(placa))
-                return i;
-        }
-        return 0;
-    }
+//    
+//    
+//
+//    public void saveArchivo(String nfile){
+//        try(PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nfile),true))){
+//            pw.println(this.id+"|"+this.usuario.getId()+"|"+this.placa+"|"+this.marca+"|"+this.modelo+"|"+this.tipo_motor+"|"+this.año+"|"+this.recorrido+"|"+this.color+"|"+this.tipo_comb+"|"+this.precio);
+//        } catch(Exception e){
+//            System.out.println(e.getMessage());
+//        }
+//    }
+//    
+//    public static Vehiculo searchByID(ArrayList<Vehiculo> vehiculos, int id){
+//        for(Vehiculo x: vehiculos){
+//            if(x.id == id)
+//                return x;
+//        }
+//        return null;
+//    }
+//    
+//    public static int searchPosByPlaca(String nfilev,String placa){
+//        ArrayList<String> placas = new ArrayList<>();
+//        try(Scanner sc = new Scanner(new File(nfilev))){
+//            while(sc.hasNextLine()){
+//                String line = sc.nextLine();
+//                String[] tokens = line.split("\\|");
+//                String placau = tokens[2];
+//                placas.add(placau);
+//            }
+//        }catch(Exception e){
+//            System.out.println(e.getMessage());
+//        }
+//        for(int i = 0;i<placas.size();i++){
+//            if(placas.get(i).equals(placa))
+//                return i;
+//        }
+//        return 0;
+//    }
     
 //    public static ArrayList<String> readFilePlacas(String nfilev){
 //        ArrayList<String> placas = new ArrayList<>();
@@ -232,13 +232,13 @@ public class Vehiculo implements Serializable{
 //        return vs;
 //    }
     
-    public static boolean verificarplaca(ArrayList<String> placas, String placa){
-        for(String x: placas){
-            if(x.equals(placa))
-                return true;
-        }
-        return false;        
-    }
+//    public static boolean verificarplaca(ArrayList<String> placas, String placa){
+//        for(String x: placas){
+//            if(x.equals(placa))
+//                return true;
+//        }
+//        return false;        
+//    }
 
     @Override
     public String toString() {

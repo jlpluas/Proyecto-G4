@@ -66,6 +66,11 @@ public class RegistrosController implements Initializable, Serializable {
             App.setRoot("ingreso");
         }
     }
+
+    @FXML
+    private void regresar(MouseEvent event) throws IOException {
+        App.setRoot("Menu");
+    }
     
     
 }

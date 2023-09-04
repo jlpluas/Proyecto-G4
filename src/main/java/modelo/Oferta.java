@@ -77,15 +77,15 @@ public class Oferta implements Serializable, Comparable<Oferta>{
 //        }
 //    }
     
-    public static ArrayList<Oferta> searchBycorreo(ArrayList<Oferta> ofertas, String correo){
-        ArrayList<Oferta> ofertasComprador = new ArrayList<>();
-        for(Oferta o: ofertas){
-            if(o.getCorreo().equals(correo))
-                ofertasComprador.add(o);
-        }
-        return ofertasComprador;
-    }
-    
+//    public static ArrayList<Oferta> searchBycorreo(ArrayList<Oferta> ofertas, String correo){
+//        ArrayList<Oferta> ofertasComprador = new ArrayList<>();
+//        for(Oferta o: ofertas){
+//            if(o.getCorreo().equals(correo))
+//                ofertasComprador.add(o);
+//        }
+//        return ofertasComprador;
+//    }
+//    
 //    public static ArrayList<Oferta> readFileOfertas(String nfile){
 //        ArrayList<Oferta> ofertas = new ArrayList<>();
 //        try(Scanner sc = new Scanner(new File(nfile))){
@@ -103,15 +103,15 @@ public class Oferta implements Serializable, Comparable<Oferta>{
 //        return ofertas;
 //    }
     
-    public static ArrayList<String> correoVeh(String placa){
-        ArrayList<String> correo= new ArrayList<>();
-        for(Oferta o: Oferta.ofertasVehiculos ){
-            if(o.getVehiculo().getPlaca().equals(placa) ){
-               correo.add(o.getCorreo());
-            }
-        }
-        return correo;
-    }
+//    public static ArrayList<String> correoVeh(String placa){
+//        ArrayList<String> correo= new ArrayList<>();
+//        for(Oferta o: Oferta.ofertasVehiculos ){
+//            if(o.getVehiculo().getPlaca().equals(placa) ){
+//               correo.add(o.getCorreo());
+//            }
+//        }
+//        return correo;
+//    }
     
         public static void saveListToFileSer(String nfile, ArrayList<Oferta> ofertas){
         try(ObjectOutputStream fout = new ObjectOutputStream(new FileOutputStream(nfile))){
