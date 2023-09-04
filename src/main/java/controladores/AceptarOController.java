@@ -4,7 +4,9 @@
  */
 package controladores;
 
+import ec.edu.espol.proyectog4.App;
 import ec.edu.espol.util.Util;
+import java.io.IOException;
 import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
@@ -88,6 +90,7 @@ public class AceptarOController implements Initializable, Serializable {
     }
 
     @FXML
-    private void regresar(MouseEvent event) {
+    private void regresar(MouseEvent event) throws IOException {
+        App.setRoot("Menu");
     }
 }
