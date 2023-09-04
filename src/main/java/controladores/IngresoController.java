@@ -7,6 +7,7 @@ package controladores;
 import ec.edu.espol.proyectog4.App;
 import modelo.Usuario;
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -23,7 +24,7 @@ import javafx.scene.control.TextField;
  *
  * @author P4321
  */
-public class IngresoController{
+public class IngresoController implements Serializable{
 
     @FXML
     private Button btnRegistrarse;

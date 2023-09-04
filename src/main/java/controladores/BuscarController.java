@@ -6,6 +6,7 @@ package controladores;
 
 import ec.edu.espol.proyectog4.App;
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -21,7 +22,7 @@ import javafx.scene.input.MouseEvent;
  *
  * @author USER
  */
-public class BuscarController implements Initializable {
+public class BuscarController implements Initializable , Serializable{
 
     @FXML
     private ComboBox<String> tipoV;

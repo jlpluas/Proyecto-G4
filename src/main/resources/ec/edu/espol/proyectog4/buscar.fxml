@@ -15,7 +15,7 @@
    <top>
       <Label text="Buscar Vehiculo" BorderPane.alignment="CENTER">
          <font>
-            <Font size="30.0" />
+            <Font name="Bell MT" size="36.0" />
          </font>
       </Label>
    </top>
@@ -34,12 +34,12 @@
          <children>
             <Button fx:id="buscar" mnemonicParsing="false" onAction="#buscar" text="Buscar" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Bell MT" size="18.0" />
                </font>
             </Button>
             <Button mnemonicParsing="false" onMouseClicked="#regresar" text="Regresar" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Bell MT" size="18.0" />
                </font>
             </Button>
          </children>
@@ -62,7 +62,7 @@
          <children>
             <Label text="Tipo de Vehiculo" GridPane.halignment="RIGHT">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Bell MT" size="18.0" />
                </font>
             </Label>
             <ComboBox fx:id="tipoV" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER">
@@ -72,77 +72,95 @@
             </ComboBox>
             <Label text="RECORRIDO" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Bell MT" size="18.0" />
                </font>
             </Label>
             <Label text="AÑO" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Bell MT" size="18.0" />
                </font>
             </Label>
             <Label text="PRECIO" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Bell MT" size="18.0" />
                </font>
             </Label>
             <Label text="Mínimo:" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
                <font>
-                  <Font size="16.0" />
+                  <Font name="Bell MT" size="18.0" />
                </font>
             </Label>
             <Label contentDisplay="CENTER" text="Mínimo:" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
                <font>
-                  <Font size="16.0" />
+                  <Font name="Bell MT" size="18.0" />
                </font>
             </Label>
             <TextField fx:id="rmin" layoutX="20.0" maxWidth="100.0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
+               <font>
+                  <Font name="Bell MT" size="18.0" />
+               </font>
             </TextField>
             <TextField fx:id="amin" maxWidth="100.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
+               <font>
+                  <Font name="Bell MT" size="18.0" />
+               </font>
             </TextField>
             <TextField fx:id="pmin" maxWidth="100.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
+               <font>
+                  <Font name="Bell MT" size="18.0" />
+               </font>
             </TextField>
             <TextField fx:id="pmax" maxWidth="100.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
+               <font>
+                  <Font name="Bell MT" size="18.0" />
+               </font>
             </TextField>
             <TextField fx:id="amax" maxWidth="100.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
+               <font>
+                  <Font name="Bell MT" size="18.0" />
+               </font>
             </TextField>
             <TextField fx:id="rmax" maxWidth="100.0" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
+               <font>
+                  <Font name="Bell MT" size="18.0" />
+               </font>
             </TextField>
             <Label text="Máximo:" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP">
                <font>
-                  <Font size="16.0" />
+                  <Font name="Bell MT" size="18.0" />
                </font>
             </Label>
             <Label text="Máximo:" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP">
                <font>
-                  <Font size="16.0" />
+                  <Font name="Bell MT" size="18.0" />
                </font>
             </Label>
             <Label text="Máximo:" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP">
                <font>
-                  <Font size="16.0" />
+                  <Font name="Bell MT" size="18.0" />
                </font>
             </Label>
             <Label text="Mínimo:" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
                <font>
-                  <Font size="16.0" />
+                  <Font name="Bell MT" size="18.0" />
                </font>
             </Label>
          </children>

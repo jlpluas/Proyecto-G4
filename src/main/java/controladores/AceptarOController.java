@@ -5,6 +5,7 @@
 package controladores;
 
 import ec.edu.espol.util.Util;
+import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -25,7 +26,7 @@ import modelo.Usuario;
  *
  * @author USER
  */
-public class AceptarOController implements Initializable {
+public class AceptarOController implements Initializable, Serializable {
 
     @FXML
     private VBox vboferta;

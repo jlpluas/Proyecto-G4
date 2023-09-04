@@ -8,6 +8,7 @@ import ec.edu.espol.proyectog4.App;
 import ec.edu.espol.util.Util;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -31,7 +32,7 @@ import modelo.Vehiculo;
  *
  * @author Usuario
  */
-public class OfertaController implements Initializable {
+public class OfertaController implements Initializable, Serializable{
 
     @FXML
     private TextField ofertaIn;
@@ -39,7 +40,6 @@ public class OfertaController implements Initializable {
     private ImageView img;
     @FXML
     private VBox vInfo;
-    
     @FXML
     private Label lInfo= new Label();
 

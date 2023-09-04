@@ -6,6 +6,7 @@ package controladores;
 
 import ec.edu.espol.proyectog4.App;
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -18,6 +19,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -28,7 +30,7 @@ import javafx.stage.Stage;
  *
  * @author romiy
  */
-public class UsuarioinfoController implements Initializable {
+public class UsuarioinfoController implements Initializable , Serializable{
 
     @FXML
     private VBox vbox1;
@@ -96,4 +98,10 @@ public class UsuarioinfoController implements Initializable {
             alerta.show();
         } 
     }
+
+    @FXML
+    private void regresar(MouseEvent event) throws IOException {
+        App.setRoot("Menu");
+    }
+    
 }

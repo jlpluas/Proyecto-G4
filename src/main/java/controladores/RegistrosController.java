@@ -8,6 +8,7 @@ import ec.edu.espol.proyectog4.App;
 import ec.edu.espol.proyectog4.App;
 import modelo.Usuario;
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -23,7 +24,7 @@ import javafx.scene.input.MouseEvent;
  *
  * @author Usuario
  */
-public class RegistrosController implements Initializable {
+public class RegistrosController implements Initializable, Serializable {
 
     @FXML
     private TextField txtfieldNombre;
