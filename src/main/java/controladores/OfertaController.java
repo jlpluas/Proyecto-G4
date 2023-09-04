@@ -56,27 +56,32 @@ public class OfertaController implements Initializable, Serializable{
     }    
 
     @FXML
-    public void enviarOferta(MouseEvent event) throws IOException {
-        float valor = 0;
-        if (!ofertaIn.getText().equals("")) {
-            valor = Float.parseFloat(ofertaIn.getText());
-        }
-        if (valor != 0) {
-        Oferta of = new Oferta(Float.parseFloat(ofertaIn.getText()), IngresoController.usuarioing.getCorreo_electronico(), FiltradoController.getVhSelec());
-        ArrayList<Oferta> ofertas = Oferta.readListFromFileSer("oferta.ser");
-        ofertas.add(of);
-        Oferta.saveListToFileSer("oferta.ser", ofertas);
-        Util.enviarCorreo(FiltradoController.vhSelec.getUsuario().getCorreo_electronico(),"OFERTA RECIBIDA","Ha recibido la oferta de $"+of.getPrecio_oferta()+" por su vehiculo: "+ FiltradoController.vhSelec.toString());
-        Alert a = new Alert(Alert.AlertType.INFORMATION, "Oferta enviada");
-        a.show();
-        App.setRoot("filtrado");
-        }
-        else if(valor==0){
-            Alert a = new Alert(Alert.AlertType.ERROR, "Debe llenar el campo de la oferta");
+    public void enviarOferta(MouseEvent event) throws IOException{
+        try{
+            float valor = 0;
+            if(Util.isNumeric(ofertaIn.getText())!= true)
+                throw new NumberFormatException();
+            if (!ofertaIn.getText().equals("")) {
+                valor = Float.parseFloat(ofertaIn.getText());
+            }
+            if (valor != 0) {
+                Oferta of = new Oferta(Float.parseFloat(ofertaIn.getText()), IngresoController.usuarioing.getCorreo_electronico(), FiltradoController.getVhSelec());
+                ArrayList<Oferta> ofertas = Oferta.readListFromFileSer("oferta.ser");
+                ofertas.add(of);
+                Oferta.saveListToFileSer("oferta.ser", ofertas);
+                Util.enviarCorreo(FiltradoController.vhSelec.getUsuario().getCorreo_electronico(), "OFERTA RECIBIDA", "Ha recibido la oferta de $" + of.getPrecio_oferta() + " por su vehiculo: " + FiltradoController.vhSelec.toString());
+                Alert a = new Alert(Alert.AlertType.INFORMATION, "Oferta enviada");
+                a.show();
+                App.setRoot("filtrado");
+            } else if (valor == 0) {
+                Alert a = new Alert(Alert.AlertType.ERROR, "Debe llenar el campo de la oferta");
+                a.show();
+            }
+        }catch(NumberFormatException e){
+            Alert a = new Alert(Alert.AlertType.ERROR, "Valor incorrecto, Ingrese una valor numerico para su oferta");
             a.show();
         }
-        
-}
+    }
     
     @FXML
     private void regresar(MouseEvent event) throws IOException {
