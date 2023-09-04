@@ -93,4 +93,9 @@ public class AceptarOController implements Initializable, Serializable {
     private void regresar(MouseEvent event) throws IOException {
         App.setRoot("Menu");
     }
+
+    @FXML
+    private void buscar(MouseEvent event) {
+        mostrarOfertas();
+    }
 }

@@ -55,7 +55,7 @@
                   <Font name="Bell MT" size="18.0" />
                </font>
             </Label>
-            <Button mnemonicParsing="false" text="Buscar " GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Button mnemonicParsing="false" onMouseClicked="#buscar" text="Buscar " GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <font>
                   <Font name="Bell MT" size="18.0" />
                </font></Button>
