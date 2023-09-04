@@ -100,56 +100,56 @@ public class Vendedor {
 //        }
 //    }
 
-    @Override
-    public String toString() {
-        return "Vendedor{" + "id=" + id + ", nombres=" + nombres + ", apellidos=" + apellidos + ", organizacion=" + organizacion + ", correo_electronico=" + correo_electronico + ", clave=" + clave;
-    }
-    
-    public static ArrayList<String> readFileCorreos(String nfile) {
-        ArrayList<String> correos = new ArrayList<>();
-        try (Scanner sc = new Scanner(new File(nfile))) {
-            while (sc.hasNextLine()) {
-                String line = sc.nextLine();
-                String[] tokens = line.split("\\|");
-                String correo_elec = tokens[4];
-                correos.add(correo_elec);
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return correos;
-    }
-
-    public static ArrayList<Vendedor> readFileVendedores(String nfile) {
-        ArrayList<Vendedor> vendedores = new ArrayList<>();
-        try (Scanner sc = new Scanner(new File(nfile))) {
-            while (sc.hasNextLine()) {
-                String line = sc.nextLine();
-                String[] tokens = line.split("\\|");
-                int ids = Integer.parseInt(tokens[0]);
-                Vendedor vend = new Vendedor(ids,tokens[1],tokens[2],tokens[3],tokens[4],tokens[5]);
-                vendedores.add(vend);
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return vendedores;
-    }
-    
-    public static ArrayList<String> readFileClaves(String nfile){
-        ArrayList<String> claves = new ArrayList<>();
-        try(Scanner sc = new Scanner(new File(nfile))){
-            while(sc.hasNextLine()){
-                String line = sc.nextLine();
-                String[] tokens = line.split("\\|");
-                String correo_elec = tokens[5];
-                claves.add(correo_elec);
-            }
-        }catch(Exception e){
-            System.out.println(e.getMessage());
-        }
-        return claves;
-    }
+//    @Override
+//    public String toString() {
+//        return "Vendedor{" + "id=" + id + ", nombres=" + nombres + ", apellidos=" + apellidos + ", organizacion=" + organizacion + ", correo_electronico=" + correo_electronico + ", clave=" + clave;
+//    }
+//    
+//    public static ArrayList<String> readFileCorreos(String nfile) {
+//        ArrayList<String> correos = new ArrayList<>();
+//        try (Scanner sc = new Scanner(new File(nfile))) {
+//            while (sc.hasNextLine()) {
+//                String line = sc.nextLine();
+//                String[] tokens = line.split("\\|");
+//                String correo_elec = tokens[4];
+//                correos.add(correo_elec);
+//            }
+//        } catch (Exception e) {
+//            System.out.println(e.getMessage());
+//        }
+//        return correos;
+//    }
+//
+//    public static ArrayList<Vendedor> readFileVendedores(String nfile) {
+//        ArrayList<Vendedor> vendedores = new ArrayList<>();
+//        try (Scanner sc = new Scanner(new File(nfile))) {
+//            while (sc.hasNextLine()) {
+//                String line = sc.nextLine();
+//                String[] tokens = line.split("\\|");
+//                int ids = Integer.parseInt(tokens[0]);
+//                Vendedor vend = new Vendedor(ids,tokens[1],tokens[2],tokens[3],tokens[4],tokens[5]);
+//                vendedores.add(vend);
+//            }
+//        } catch (Exception e) {
+//            System.out.println(e.getMessage());
+//        }
+//        return vendedores;
+//    }
+//    
+//    public static ArrayList<String> readFileClaves(String nfile){
+//        ArrayList<String> claves = new ArrayList<>();
+//        try(Scanner sc = new Scanner(new File(nfile))){
+//            while(sc.hasNextLine()){
+//                String line = sc.nextLine();
+//                String[] tokens = line.split("\\|");
+//                String correo_elec = tokens[5];
+//                claves.add(correo_elec);
+//            }
+//        }catch(Exception e){
+//            System.out.println(e.getMessage());
+//        }
+//        return claves;
+//    }
             
 //    public static void nextVendedor(Scanner sc, String nfileVendores) {
 //        int id_vendedor = nextID(nfileVendores);
