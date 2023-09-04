@@ -11,6 +11,7 @@ import modelo.Vehiculo;
 import modelo.Camioneta;
 import java.io.IOException;
 import java.io.Serializable;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -49,7 +50,9 @@ public class RegistrarVController implements Initializable, Serializable {
     private VBox v1;
     @FXML
     private VBox v2;
+    @FXML
     Button subirImagen=new Button("Subir Imagen");
+    @FXML
     TextField imagenRuta=new TextField();
     
     private ArrayList<String> datosIngresados = new ArrayList<>();
@@ -62,6 +65,7 @@ public class RegistrarVController implements Initializable, Serializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Vbox_tipoV.getItems().addAll("Auto","Camioneta","Motocicleta");
+
     }    
     
     @FXML
@@ -71,6 +75,7 @@ public class RegistrarVController implements Initializable, Serializable {
         datosIngresados.clear();
 
         String opcion = Vbox_tipoV.getSelectionModel().getSelectedItem();
+        
         if (opcion.equals("Auto")) {
             ingresarAuto();
             vehiculoActual = new Auto(); 
@@ -81,121 +86,153 @@ public class RegistrarVController implements Initializable, Serializable {
             ingresarMotocicleta();
             vehiculoActual = new Vehiculo(); 
         }
+
     }
     
     public void ingresarAuto(){
 
-        v1.getChildren().addAll(new Label("Placa: "),new Label("Marca: "),new Label("Modelo: "),new Label("Tipo de Motor: "),new Label("Año: "),new Label("Recorrido: "),new Label("Color: "),new Label("Tipo de Combustible: "),new Label("Precio: "),new Label("Vidrios: "),new Label("Transmision: "));
+        v1.getChildren().addAll(new Label("Placa: "), new Label("Marca: "), new Label("Modelo: "), new Label("Tipo de Motor: "), new Label("Año: "), new Label("Recorrido: "), new Label("Color: "), new Label("Tipo de Combustible: "), new Label("Precio: "), new Label("Vidrios: "), new Label("Transmision: "));
         v1.getChildren().addAll(subirImagen);
         subirImagen();
-        
-        for (int v=0; v<v1.getChildren().size();v++)
-            v1.getChildren().get(v).setStyle("-fx-font-size: 16px;"); 
+
+        for (int v = 0; v < v1.getChildren().size(); v++) {
+            v1.getChildren().get(v).setStyle("-fx-font-size: 16px;");
+        }
         for (int i = 0; i < 11; i++) {
             TextField textField = new TextField();
             v2.getChildren().add(textField);
-            datosIngresados.add(""); 
+            datosIngresados.add("");
         }
-        
+
         v2.getChildren().add(imagenRuta);
-        datosIngresados.add(""); 
+        datosIngresados.add("");
     }
-    
-    public void ingresarCamioneta(){
-        v1.getChildren().addAll(new Label("Placa: "),new Label("Marca: "),new Label("Modelo: "),new Label("Tipo de Motor: "),new Label("Año: "),new Label("Recorrido: "),new Label("Color: "),new Label("Tipo de Combustible: "),new Label("Precio: "),new Label("Traccion: "));
+
+    public void ingresarCamioneta() {
+        v1.getChildren().addAll(new Label("Placa: "), new Label("Marca: "), new Label("Modelo: "), new Label("Tipo de Motor: "), new Label("Año: "), new Label("Recorrido: "), new Label("Color: "), new Label("Tipo de Combustible: "), new Label("Precio: "), new Label("Traccion: "));
         v1.getChildren().addAll(subirImagen);
         subirImagen();
-        
-        for (int v=0; v<v1.getChildren().size();v++)
-            v1.getChildren().get(v).setStyle("-fx-font-size: 16px;");        
-        
+
+        for (int v = 0; v < v1.getChildren().size(); v++) {
+            v1.getChildren().get(v).setStyle("-fx-font-size: 16px;");
+        }
 
         for (int i = 0; i < 10; i++) {
             TextField textField = new TextField();
             v2.getChildren().add(textField);
-            datosIngresados.add(""); 
+            datosIngresados.add("");
         }
         v2.getChildren().add(imagenRuta);
-        datosIngresados.add(""); 
+        datosIngresados.add("");
     }
 
-    public void ingresarMotocicleta(){
-        v1.getChildren().addAll(new Label("Placa: "),new Label("Marca: "),new Label("Modelo: "),new Label("Tipo de Motor: "),new Label("Año: "),new Label("Recorrido: "),new Label("Color: "),new Label("Tipo de Combustible: "),new Label("Precio: "));
+    public void ingresarMotocicleta() {
+        v1.getChildren().addAll(new Label("Placa: "), new Label("Marca: "), new Label("Modelo: "), new Label("Tipo de Motor: "), new Label("Año: "), new Label("Recorrido: "), new Label("Color: "), new Label("Tipo de Combustible: "), new Label("Precio: "));
         v1.getChildren().addAll(subirImagen);
         subirImagen();
-        
-        for (int v=0; v<v1.getChildren().size();v++){
-            v1.getChildren().get(v).setStyle("-fx-font-size: 16px;");            
+
+        for (int v = 0; v < v1.getChildren().size(); v++) {
+            v1.getChildren().get(v).setStyle("-fx-font-size: 16px;");
         }
-        
+
         for (int i = 0; i < 9; i++) {
             TextField textField = new TextField();
-            textField.setId("campo_" + i); 
+            textField.setId("campo_" + i);
             v2.getChildren().add(textField);
-            datosIngresados.add(""); 
+            datosIngresados.add("");
         }
         v2.getChildren().add(imagenRuta);
-        datosIngresados.add(""); 
+        datosIngresados.add("");
     }
-    
+
     private void guardarDatos() {
-        
+
         for (int i = 0; i < v2.getChildren().size(); i++) {
             TextField textField = (TextField) v2.getChildren().get(i);
             String texto = textField.getText();
-            datosIngresados.set(i, texto); 
+            datosIngresados.set(i, texto);
+
         }
-        vehiculoActual.setPlaca(datosIngresados.get(0));
-        vehiculoActual.setMarca(datosIngresados.get(1));
-        vehiculoActual.setModelo(datosIngresados.get(2));
-        vehiculoActual.setTipo_motor(datosIngresados.get(3));
-        vehiculoActual.setAño(Integer.parseInt(datosIngresados.get(4)));
-        vehiculoActual.setRecorrido(Integer.parseInt(datosIngresados.get(5)));
-        vehiculoActual.setColor(datosIngresados.get(6));
-        vehiculoActual.setTipo_comb(datosIngresados.get(7));
-        vehiculoActual.setPrecio(Integer.parseInt(datosIngresados.get(8)));
-        vehiculoActual.setUsuario(IngresoController.usuarioing);
+
+            vehiculoActual.setPlaca(datosIngresados.get(0));
+            vehiculoActual.setMarca(datosIngresados.get(1));
+            vehiculoActual.setModelo(datosIngresados.get(2));
+            vehiculoActual.setTipo_motor(datosIngresados.get(3));
+            vehiculoActual.setColor(datosIngresados.get(6));
+            vehiculoActual.setTipo_comb(datosIngresados.get(7));
+            vehiculoActual.setUsuario(IngresoController.usuarioing);
+            try {
+                vehiculoActual.setAño(Integer.parseInt(datosIngresados.get(4)));
+            } catch (NumberFormatException nf) {
+                Alert alerta = new Alert(AlertType.ERROR);
+                alerta.setContentText("Ingrese el año en números enteros");
+                alerta.show();
+            }
+            try {
+                vehiculoActual.setRecorrido(Integer.parseInt(datosIngresados.get(5)));
+            } catch (NumberFormatException nf) {
+                Alert alerta = new Alert(AlertType.ERROR);
+                alerta.setContentText("Ingrese el recorrido en números enteros");
+                alerta.show();
+            }
+            try {
+                vehiculoActual.setPrecio(Integer.parseInt(datosIngresados.get(8)));
+            } catch (NumberFormatException nf) {
+                Alert alerta = new Alert(AlertType.ERROR);
+                alerta.setContentText("Ingrese el precio en números enteros");
+                alerta.show();
+            }
+
+            if (datosIngresados.size() == 10) {
+                vehiculoActual.setImagen(datosIngresados.get(9));
+                Vehiculo moto = vehiculoActual;
+            }
+            if (datosIngresados.size() == 12) {
+                Auto auto = (Auto) vehiculoActual;
+                auto.setVidrios(datosIngresados.get(9));
+                auto.setTransmision(datosIngresados.get(10));
+                vehiculoActual.setImagen(datosIngresados.get(11));
+
+            }
+            if (datosIngresados.size() == 11) {
+                Camioneta camioneta = (Camioneta) vehiculoActual;
+                camioneta.setTraccion(datosIngresados.get(9));
+                vehiculoActual.setImagen(datosIngresados.get(10));
+            }
         
-        if (datosIngresados.size()==10 ){
-        vehiculoActual.setImagen(datosIngresados.get(9));
-        Vehiculo moto = vehiculoActual;
-        }
-        if (datosIngresados.size()==12 ) {
-            Auto auto = (Auto) vehiculoActual;
-            auto.setVidrios(datosIngresados.get(9));
-            auto.setTransmision(datosIngresados.get(10));
-            vehiculoActual.setImagen(datosIngresados.get(11));
-            
-        }
-        if (datosIngresados.size()==11) {
-            Camioneta camioneta = (Camioneta) vehiculoActual;
-            camioneta.setTraccion(datosIngresados.get(9));
-            vehiculoActual.setImagen(datosIngresados.get(10));
-        }
-        
+
+               
     }
    
     @FXML
     private void registrar(ActionEvent event) throws IOException {
-        guardarDatos();
         
-        ArrayList<Vehiculo> vehiculos= Vehiculo.readListFromFileSer("vehiculos.ser");
-        ArrayList<String> lstplacas= new ArrayList<>();
-        for (Vehiculo v: vehiculos){
-            lstplacas.add(v.getPlaca());
-        }
-        
-        if (lstplacas.contains(vehiculoActual.getPlaca())){
-            Alert alerta= new Alert(AlertType.ERROR);
-            alerta.setContentText("Vehiculo ya registrado");
-            alerta.show();
+        try{
+            guardarDatos();
+            ArrayList<Vehiculo> vehiculos = Vehiculo.readListFromFileSer("vehiculos.ser");
+            ArrayList<String> lstplacas = new ArrayList<>();
+            for (Vehiculo v : vehiculos) {
+                lstplacas.add(v.getPlaca());
+            }
+
+            if (lstplacas.contains(vehiculoActual.getPlaca())) {
+                Alert alerta = new Alert(AlertType.ERROR);
+                alerta.setContentText("Vehiculo ya registrado");
+                alerta.show();
 //            App.setRoot("registrarV");            
-        }else{
-            vehiculos.add(vehiculoActual); 
-            Vehiculo.saveListToFileSer("vehiculos.ser", vehiculos);
-            App.setRoot("menu");
-        }
-        datosIngresados.clear();
+            } else {
+                vehiculos.add(vehiculoActual);
+                Vehiculo.saveListToFileSer("vehiculos.ser", vehiculos);
+                App.setRoot("menu");
+            }
+            datosIngresados.clear();
+        } catch(IndexOutOfBoundsException rt){
+            Alert alerta = new Alert(AlertType.ERROR);
+            alerta.setContentText("Debe llenar todos los campos");
+            alerta.show();           
+        } 
+        
+
     }
 
     @FXML
@@ -205,10 +242,10 @@ public class RegistrarVController implements Initializable, Serializable {
     
 
     
-    private void subirImagen() {
+private void subirImagen() {
     subirImagen.setOnAction(eh -> {
         FileChooser fc = new FileChooser();
-        fc.setInitialDirectory(new File("/"));
+        fc.setInitialDirectory(new File(System.getProperty("user.dir")));
         fc.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Imagen", "*.png", "*.jpeg", "*.jpg"));
         File selectedFile = fc.showOpenDialog(null);
@@ -216,7 +253,7 @@ public class RegistrarVController implements Initializable, Serializable {
         if (selectedFile != null) {
             String imageName = selectedFile.getName();
             try {
-                File destination = new File("src/main/resources/img/" + imageName);
+                File destination = new File(imageName); 
                 Files.copy(selectedFile.toPath(), destination.toPath(), StandardCopyOption.REPLACE_EXISTING);
                 imagenRuta.setText(imageName);
             } catch (IOException ex) {
