@@ -51,7 +51,7 @@ public class OfertaController implements Initializable {
 
         lInfo.setText(FiltradoController.getVhSelec().toString());
         vInfo.getChildren().add(lInfo);
-        System.out.println(FiltradoController.getVhSelec().toString());
+//        System.out.println(FiltradoController.getVhSelec().toString());
         img.setImage(new Image("img/" + FiltradoController.getVhSelec().getImagen()));
 
     }    
@@ -67,7 +67,8 @@ public class OfertaController implements Initializable {
         ArrayList<Oferta> ofertas = Oferta.readListFromFileSer("oferta.ser");
         ofertas.add(of);
         Oferta.saveListToFileSer("oferta.ser", ofertas);
-        Util.enviarCorreo(FiltradoController.getVhSelec().getUsuario().getCorreo_electronico(),IngresoController.usuarioing.getCorreo_electronico() , IngresoController.usuarioing.getClave(), of);
+            System.out.println(FiltradoController.vhSelec.getUsuario());
+//        Util.enviarCorreo(FiltradoController.vhSelec.getUsuario().getCorreo_electronico(),IngresoController.usuarioing.getCorreo_electronico() , IngresoController.usuarioing.getClave(), of);
         
         App.setRoot("filtrado");
         }

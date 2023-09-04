@@ -59,7 +59,7 @@ public class FiltradoController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    private static Vehiculo vhSelec;
+    static Vehiculo vhSelec;
 
     public static Vehiculo getVhSelec() {
         return vhSelec;

@@ -153,6 +153,7 @@ public class RegistrarVController implements Initializable {
         vehiculoActual.setColor(datosIngresados.get(6));
         vehiculoActual.setTipo_comb(datosIngresados.get(7));
         vehiculoActual.setPrecio(Integer.parseInt(datosIngresados.get(8)));
+        vehiculoActual.setUsuario(IngresoController.usuarioing);
         
         if (datosIngresados.size()==10 ){
         vehiculoActual.setImagen(datosIngresados.get(9));

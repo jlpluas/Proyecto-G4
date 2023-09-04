@@ -11,10 +11,11 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Oferta {
+public class Oferta implements Serializable{
     private double precio_oferta;
     private String correo;
     private Vehiculo vehiculo;
