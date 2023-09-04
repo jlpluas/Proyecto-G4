@@ -51,7 +51,7 @@ public class AceptarOController implements Initializable, Serializable {
     public void mostrarOfertas(){
         ArrayList<Oferta> ofertas=filtrarporusuario(Oferta.readListFromFileSer("oferta.ser"),IngresoController.usuarioing);
         ArrayList<Oferta> lstofertas= filtrarporplaca(ofertas,placa.getText());
-        Collections.sort(lstofertas);
+        Collections.sort(lstofertas,Collections.reverseOrder());
         for (Oferta oferta:lstofertas){
             Label precio=new Label(String.valueOf(oferta.getPrecio_oferta()));
             Label correo=new Label(oferta.getCorreo());
