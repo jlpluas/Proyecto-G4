@@ -48,14 +48,14 @@ public class AceptarOController implements Initializable, Serializable {
     }    
     
     public void mostrarOfertas(){
-        ArrayList<Oferta> ofertas=filtrarporusuario(Oferta.ofertasVehiculos,IngresoController.usuarioing);
+        ArrayList<Oferta> ofertas=filtrarporusuario(Oferta.readListFromFileSer("oferta.ser"),IngresoController.usuarioing);
         ArrayList<Oferta> lstofertas= filtrarporplaca(ofertas,placa.getText());
         for (Oferta oferta:lstofertas){
             Label precio=new Label(String.valueOf(oferta.getPrecio_oferta()));
             Label correo=new Label(oferta.getCorreo());
             vboferta.getChildren().add(precio); 
             vbcorreo.getChildren().add(correo);
-            
+            vboferta.setSpacing(9.3); vbcorreo.setSpacing(9.3);
             Button aceptar= new Button("Aceptar Oferta");
             aceptar.setId("btnaceptar");
             

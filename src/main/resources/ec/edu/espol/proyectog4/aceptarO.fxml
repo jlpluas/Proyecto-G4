@@ -46,8 +46,8 @@
                <font>
                   <Font name="Bell MT" size="15.0" />
                </font></Label>
-            <VBox fx:id="vbcorreo" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2" />
-            <VBox fx:id="vboferta" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <VBox fx:id="vbcorreo" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2" />
+            <VBox fx:id="vboferta" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <VBox fx:id="vbbotones" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
             <TextField fx:id="placa" GridPane.columnIndex="1" />
             <Label text="Ingresar placa: " GridPane.halignment="RIGHT">
