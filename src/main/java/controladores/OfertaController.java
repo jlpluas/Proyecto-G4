@@ -51,7 +51,6 @@ public class OfertaController implements Initializable, Serializable{
 
         lInfo.setText(FiltradoController.getVhSelec().toString());
         vInfo.getChildren().add(lInfo);
-//        System.out.println(FiltradoController.getVhSelec().toString());
         img.setImage(new Image("img/" + FiltradoController.getVhSelec().getImagen()));
 
     }    
@@ -67,8 +66,7 @@ public class OfertaController implements Initializable, Serializable{
         ArrayList<Oferta> ofertas = Oferta.readListFromFileSer("oferta.ser");
         ofertas.add(of);
         Oferta.saveListToFileSer("oferta.ser", ofertas);
-//        System.out.println(FiltradoController.vhSelec.getUsuario());
-//        Util.enviarCorreo(FiltradoController.vhSelec.getUsuario().getCorreo_electronico(),"OFERTA RECIBIDA","Ha recibido la oferta de $"+of.getPrecio_oferta()+" por su vehiculo: "+ FiltradoController.vhSelec.toString());
+        Util.enviarCorreo(FiltradoController.vhSelec.getUsuario().getCorreo_electronico(),"OFERTA RECIBIDA","Ha recibido la oferta de $"+of.getPrecio_oferta()+" por su vehiculo: "+ FiltradoController.vhSelec.toString());
         
         App.setRoot("filtrado");
         }
@@ -79,8 +77,6 @@ public class OfertaController implements Initializable, Serializable{
         
 }
     
-
-
     @FXML
     private void regresar(MouseEvent event) throws IOException {
         App.setRoot("filtrado");

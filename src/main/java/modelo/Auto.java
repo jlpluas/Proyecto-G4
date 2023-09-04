@@ -46,26 +46,6 @@ public class Auto extends Vehiculo implements Serializable{
     }
 
 
-
-//    public static Auto ingresarAuto(Scanner sc, String nfilev,Vendedor vendedor){
-//        Vehiculo vehiculo= ingresarVehiculo(sc, nfilev,vendedor);
-//        System.out.println("Ingrese vidrios:");
-//        String vidrios = sc.nextLine();
-//        System.out.println("Ingrese transmision");
-//        String transmision= sc.nextLine();        
-//        Auto auto = new Auto(vehiculo.getId(),vehiculo.getPlaca(), vehiculo.getMarca(), vehiculo.getModelo(), vehiculo.getTipo_motor(), vehiculo.getAño(), vehiculo.getRecorrido(), vehiculo.getColor(), vehiculo.getTipo_comb(), vehiculo.getPrecio(),vehiculo.getVendedor(),vehiculo.getImagen(), vidrios, transmision);
-//        return auto;
-//    }
-//    
-//    @Override
-//    public void saveArchivo(String nfile){
-//        try(PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nfile),true))){
-//            pw.println(super.getId()+"|"+super.getVendedor().getId()+"|"+super.getPlaca()+"|"+super.getMarca()+"|"+super.getModelo()+"|"+super.getTipo_motor()+"|"+super.getAño()+"|"+super.getRecorrido()+"|"+this.getColor()+"|"+super.getTipo_comb()+"|"+super.getPrecio()+"|"+this.transmision+"|"+this.vidrios+"|"+super.getImagen());            
-//        } catch(Exception e){
-//            System.out.println(e.getMessage());
-//        }
-//    }
-
     @Override
     public String toString() {
         return super.toString()+ "\n vidrios=" + vidrios + "\n transmision=" + transmision;

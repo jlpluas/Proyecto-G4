@@ -148,133 +148,14 @@ public class Vehiculo implements Serializable{
     public void setImagen(String imagen) {
         this.imagen = imagen;
     }
-//    
-//    
-//
-//    public void saveArchivo(String nfile){
-//        try(PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nfile),true))){
-//            pw.println(this.id+"|"+this.usuario.getId()+"|"+this.placa+"|"+this.marca+"|"+this.modelo+"|"+this.tipo_motor+"|"+this.año+"|"+this.recorrido+"|"+this.color+"|"+this.tipo_comb+"|"+this.precio);
-//        } catch(Exception e){
-//            System.out.println(e.getMessage());
-//        }
-//    }
-//    
-//    public static Vehiculo searchByID(ArrayList<Vehiculo> vehiculos, int id){
-//        for(Vehiculo x: vehiculos){
-//            if(x.id == id)
-//                return x;
-//        }
-//        return null;
-//    }
-//    
-//    public static int searchPosByPlaca(String nfilev,String placa){
-//        ArrayList<String> placas = new ArrayList<>();
-//        try(Scanner sc = new Scanner(new File(nfilev))){
-//            while(sc.hasNextLine()){
-//                String line = sc.nextLine();
-//                String[] tokens = line.split("\\|");
-//                String placau = tokens[2];
-//                placas.add(placau);
-//            }
-//        }catch(Exception e){
-//            System.out.println(e.getMessage());
-//        }
-//        for(int i = 0;i<placas.size();i++){
-//            if(placas.get(i).equals(placa))
-//                return i;
-//        }
-//        return 0;
-//    }
-    
-//    public static ArrayList<String> readFilePlacas(String nfilev){
-//        ArrayList<String> placas = new ArrayList<>();
-//        try(Scanner sc = new Scanner(new File(nfilev))){
-//            while(sc.hasNextLine()){
-//                String line = sc.nextLine();
-//                String[] tokens = line.split("\\|");
-//                String placau = tokens[2];
-//                placas.add(placau);
-//            }
-//        }catch(Exception e){
-//            System.out.println(e.getMessage());
-//        }
-//        return placas;
-//    }
-//    
-//    public static ArrayList<Vehiculo> vehConPlaca(String nfilev,String placa){
-//        ArrayList<Vehiculo> vehiculos=readFileVehiculos(nfilev);
-//        for (Vehiculo v:vehiculos){
-//            if(v.getPlaca().equals(placa)){
-//                vehiculos.add(v);
-//            }
-//        }
-//        return vehiculos;
-//    }
-           
-//    public static ArrayList<Vehiculo> readFileVehiculos(String nfilev){
-//        ArrayList<Vehiculo> vs = new ArrayList<>();
-//        try(Scanner sc = new Scanner(new File(nfilev))){
-//            while(sc.hasNextLine()){
-//                String line = sc.nextLine();
-//                String[] tokens = line.split("\\|");
-//                int idvh = Integer.parseInt(tokens[0]);
-//                int anio = Integer.parseInt(tokens[6]);
-//                int km = Integer.parseInt(tokens[7]);
-//                int precio = Integer.parseInt(tokens[10]);
-//                int idvn = Integer.parseInt(tokens[1]);
-//                Vendedor vend = Vendedor.searchByID("Vendedores.txt", idvn);
-//                Vehiculo v = new Vehiculo(idvh,tokens[2],tokens[3],tokens[4],tokens[5],anio,km,tokens[8],tokens[9],precio,vend);
-//                vs.add(v);
-//            }
-//        }catch(Exception e){
-//            System.out.println(e.getMessage());
-//        }
-//        return vs;
-//    }
-    
-//    public static boolean verificarplaca(ArrayList<String> placas, String placa){
-//        for(String x: placas){
-//            if(x.equals(placa))
-//                return true;
-//        }
-//        return false;        
-//    }
+
 
     @Override
     public String toString() {
         return "placa=" + placa + "\n marca=" + marca + "\n modelo=" + modelo + "\n tipo_motor=" + tipo_motor + "\n año=" + año + "\n recorrido=" + recorrido + "\n color=" + color + "\n tipo_comb=" + tipo_comb + "\n precio=" + precio;
     }
     
-//    public static Vehiculo ingresarVehiculo(Scanner sc, String nfilev,Vendedor vendedor){
-//        ArrayList<String> placas = readFilePlacas(nfilev);
-//        int idv = nextID(nfilev);
-//        System.out.println("Ingrese placa:");
-//        String placa = sc.nextLine();
-//        while(verificarplaca(placas,placa)== true){
-//            System.out.println("Placa ya registrada, registre otra placa");
-//            placa = sc.nextLine();
-//        }            
-//        System.out.println("Ingrese marca");
-//        String marca= sc.nextLine();
-//        System.out.println("Ingrese modelo");
-//        String modelo= sc.nextLine();
-//        System.out.println("Ingrese tipo de motor");
-//        String tmotor= sc.nextLine();
-//        System.out.println("Ingrese año:");
-//        int año = Integer.parseInt(sc.nextLine());
-//        System.out.println("Ingrese recorrido");
-//        int recorrido= Integer.parseInt(sc.nextLine());
-//        System.out.println("Ingrese color:");
-//        String color = sc.nextLine();
-//        System.out.println("Ingrese tipo de combustible");
-//        String tcombustible= sc.nextLine();
-//        System.out.println("Ingrese precio:");
-//        int precio = Integer.parseInt(sc.nextLine());
-//        
-//       Vehiculo v= new Vehiculo(idv,placa,marca,modelo,tmotor,año,recorrido,color,tcombustible,precio,vendedor);
-//       return v;
-//    }
-    
+
     public static void saveListToFileSer(String nfile, ArrayList<Vehiculo> vehiculos) {
     
     try (ObjectOutputStream fout = new ObjectOutputStream(new FileOutputStream(nfile))) {
