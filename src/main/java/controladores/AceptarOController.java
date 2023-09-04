@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -50,6 +51,7 @@ public class AceptarOController implements Initializable, Serializable {
     public void mostrarOfertas(){
         ArrayList<Oferta> ofertas=filtrarporusuario(Oferta.readListFromFileSer("oferta.ser"),IngresoController.usuarioing);
         ArrayList<Oferta> lstofertas= filtrarporplaca(ofertas,placa.getText());
+        Collections.sort(lstofertas);
         for (Oferta oferta:lstofertas){
             Label precio=new Label(String.valueOf(oferta.getPrecio_oferta()));
             Label correo=new Label(oferta.getCorreo());

@@ -15,7 +15,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Oferta implements Serializable{
+public class Oferta implements Serializable, Comparable<Oferta>{
     private double precio_oferta;
     private String correo;
     private Vehiculo vehiculo;
@@ -131,5 +131,15 @@ public class Oferta implements Serializable{
             System.out.println(c.getMessage());
         }
         return ofertas;
-    } 
+    }
+    
+    @Override
+    public int compareTo(Oferta o){
+        int salida = 0;
+        if(this.precio_oferta<o.precio_oferta)
+            salida = -1;
+        else if(this.precio_oferta>o.precio_oferta)
+            salida = 1;
+        return salida;
+    }
 }
