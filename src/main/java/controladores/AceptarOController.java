@@ -62,7 +62,7 @@ public class AceptarOController implements Initializable, Serializable {
             aceptar.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent t) {
-                    Util.enviarCorreo(oferta.getCorreo(), IngresoController.usuarioing.getCorreo_electronico(), IngresoController.usuarioing.getClave(), oferta);
+                    Util.enviarCorreo(oferta.getCorreo(),"OFERTA ACEPTADA", "Ha sido aceptada su oferta de $"+oferta.getPrecio_oferta()+" por el vehiculo: "+ FiltradoController.vhSelec.toString());
                 }
             });
             

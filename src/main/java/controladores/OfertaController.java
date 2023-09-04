@@ -67,8 +67,8 @@ public class OfertaController implements Initializable, Serializable{
         ArrayList<Oferta> ofertas = Oferta.readListFromFileSer("oferta.ser");
         ofertas.add(of);
         Oferta.saveListToFileSer("oferta.ser", ofertas);
-            System.out.println(FiltradoController.vhSelec.getUsuario());
-//        Util.enviarCorreo(FiltradoController.vhSelec.getUsuario().getCorreo_electronico(),IngresoController.usuarioing.getCorreo_electronico() , IngresoController.usuarioing.getClave(), of);
+        System.out.println(FiltradoController.vhSelec.getUsuario());
+        Util.enviarCorreo(FiltradoController.vhSelec.getUsuario().getCorreo_electronico(),"OFERTA RECIBIDA","Ha recibido la oferta de $"+of.getPrecio_oferta()+" por su vehiculo: "+ FiltradoController.vhSelec.toString());
         
         App.setRoot("filtrado");
         }
