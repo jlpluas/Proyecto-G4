@@ -143,119 +143,101 @@ public class RegistrarVController implements Initializable, Serializable {
     }
 
     private void guardarDatos() {
-
         for (int i = 0; i < v2.getChildren().size(); i++) {
             TextField textField = (TextField) v2.getChildren().get(i);
-            String texto = textField.getText();
-            datosIngresados.set(i, texto);
-
+            datosIngresados.set(i, textField.getText()); 
         }
-
-        //if (!datosIngresados.contains(null)){
-            vehiculoActual.setPlaca(datosIngresados.get(0));
-            vehiculoActual.setMarca(datosIngresados.get(1));
-            vehiculoActual.setModelo(datosIngresados.get(2));
-            vehiculoActual.setTipo_motor(datosIngresados.get(3));
-            vehiculoActual.setColor(datosIngresados.get(6));
-            vehiculoActual.setTipo_comb(datosIngresados.get(7));
-            vehiculoActual.setUsuario(IngresoController.usuarioing);
-            try {
-                vehiculoActual.setAño(Integer.parseInt(datosIngresados.get(4)));
-            } catch (NumberFormatException nf) {
-                Alert alerta = new Alert(AlertType.ERROR);
-                alerta.setContentText("Ingrese el año en números enteros");
-                alerta.show();
-            }
-            try {
-                vehiculoActual.setRecorrido(Integer.parseInt(datosIngresados.get(5)));
-            } catch (NumberFormatException nf) {
-                Alert alerta = new Alert(AlertType.ERROR);
-                alerta.setContentText("Ingrese el recorrido en números enteros");
-                alerta.show();
-            }
-            try {
-                vehiculoActual.setPrecio(Integer.parseInt(datosIngresados.get(8)));
-            } catch (NumberFormatException nf) {
-                Alert alerta = new Alert(AlertType.ERROR);
-                alerta.setContentText("Ingrese el precio en números enteros");
-                alerta.show();
-            }
-
-            if (datosIngresados.size() == 10) {
-                vehiculoActual.setImagen(datosIngresados.get(9));
-            Vehiculo moto = vehiculoActual;
+        vehiculoActual.setPlaca(datosIngresados.get(0));
+        vehiculoActual.setMarca(datosIngresados.get(1));
+        vehiculoActual.setModelo(datosIngresados.get(2));
+        vehiculoActual.setTipo_motor(datosIngresados.get(3));
+        vehiculoActual.setAño(Integer.parseInt(datosIngresados.get(4)));
+        vehiculoActual.setRecorrido(Integer.parseInt(datosIngresados.get(5)));
+        vehiculoActual.setColor(datosIngresados.get(6));
+        vehiculoActual.setTipo_comb(datosIngresados.get(7));
+        vehiculoActual.setPrecio(Integer.parseInt(datosIngresados.get(8)));
+        vehiculoActual.setUsuario(IngresoController.usuarioing);
+        
+        if (datosIngresados.size()==10 ){
+        vehiculoActual.setImagen(datosIngresados.get(9));
+        Vehiculo moto = vehiculoActual;
         }
-        if (datosIngresados.size() == 12) {
+        if (datosIngresados.size()==12 ) {
             Auto auto = (Auto) vehiculoActual;
             auto.setVidrios(datosIngresados.get(9));
             auto.setTransmision(datosIngresados.get(10));
             vehiculoActual.setImagen(datosIngresados.get(11));
-
+            
         }
-        if (datosIngresados.size() == 11) {
+        if (datosIngresados.size()==11) {
             Camioneta camioneta = (Camioneta) vehiculoActual;
             camioneta.setTraccion(datosIngresados.get(9));
             vehiculoActual.setImagen(datosIngresados.get(10));
         }
-
-
+        
     }
 
     @FXML
-    private void registrar(ActionEvent event) throws IOException {
+private void registrar(ActionEvent event) throws IOException {
 
-        if (Vbox_tipoV.getSelectionModel().getSelectedItem() == null) {
-            Alert alerta = new Alert(AlertType.ERROR);
-            alerta.setContentText("Seeleccione un tipo de vehiculo");
-            alerta.show();
-        }
-        try{
-            if (datosIngresados.contains("")) {
-                Alert alerta = new Alert(AlertType.ERROR);
-                alerta.setContentText("Deebe llenar todos los campos");
-                alerta.show();
-                
-            } else if (!datosIngresados.contains("")) {
-                guardarDatos();
-                try {
-
-                    ArrayList<Vehiculo> vehiculos = Vehiculo.readListFromFileSer("vehiculos.ser");
-                    ArrayList<String> lstplacas = new ArrayList<>();
-                    for (Vehiculo v : vehiculos) {
-                        lstplacas.add(v.getPlaca());
-                    }
-
-                    if (lstplacas.contains(vehiculoActual.getPlaca())) {
-                        Alert alerta = new Alert(AlertType.ERROR);
-                        alerta.setContentText("Vehiculo ya registrado");
-                        alerta.show();            
-                    } else {
-                        vehiculos.add(vehiculoActual);
-                        Vehiculo.saveListToFileSer("vehiculos.ser", vehiculos);
-                        App.setRoot("menu");
-                    }
-                    
-                    datosIngresados.clear();
-                } catch (IndexOutOfBoundsException rt) {
-
-                } catch (NullPointerException n) {
-
-                }
+    if (Vbox_tipoV.getSelectionModel().getSelectedItem() == null) {
+        Alert alerta = new Alert(AlertType.ERROR);
+        alerta.setContentText("Seleccione un tipo de vehículo");
+        alerta.show();
+    } else {
+        // Verificar si hay campos de texto vacíos
+        boolean camposVacios = false;
+        int numChildren = v2.getChildren().size();
+        
+        for (int i = 0; i < numChildren && !camposVacios; i++) {
+            TextField textField = (TextField) v2.getChildren().get(i);
+            if (textField.getText().isEmpty()) {
+                camposVacios = true;
             }
-        }catch(IndexOutOfBoundsException i){
-            System.out.println(i.getMessage());
         }
+
+        if (camposVacios) {
+            Alert alerta = new Alert(AlertType.ERROR);
+            alerta.setContentText("Llene todos los campos");
+            alerta.show();
+        } else {
             
+             if (!esEntero(((TextField)v2.getChildren().get(4)).getText())) {
+                Alert alerta = new Alert(AlertType.ERROR);
+                alerta.setContentText("Ingrese el año en números enteros");
+                alerta.show();
+            } else if (!esEntero(((TextField)v2.getChildren().get(5)).getText())) {
+                Alert alerta = new Alert(AlertType.ERROR);
+                alerta.setContentText("Ingrese el recorrido en números enteros");
+                alerta.show();
+            } else if (!esEntero(((TextField)v2.getChildren().get(8)).getText())) {
+                Alert alerta = new Alert(AlertType.ERROR);
+                alerta.setContentText("Ingrese el precio en números enteros");
+                alerta.show();
+            } else {
+                guardarDatos();
 
+            ArrayList<Vehiculo> vehiculos = Vehiculo.readListFromFileSer("vehiculos.ser");
+            ArrayList<String> lstplacas = new ArrayList<>();
+            for (Vehiculo v : vehiculos) {
+                lstplacas.add(v.getPlaca());
+            }
 
-            
-        
-        
-        
-        
+            if (lstplacas.contains(vehiculoActual.getPlaca())) {
+                Alert alerta = new Alert(AlertType.ERROR);
+                alerta.setContentText("Vehículo ya registrado");
+                alerta.show();
+            } else {
+                vehiculos.add(vehiculoActual);
+                Vehiculo.saveListToFileSer("vehiculos.ser", vehiculos);
+                App.setRoot("menu");
+            }
 
+            datosIngresados.clear();
+        }
     }
-
+}
+}
     @FXML
     private void regresar(MouseEvent event) throws IOException {
         App.setRoot("menu");
@@ -263,27 +245,36 @@ public class RegistrarVController implements Initializable, Serializable {
     
 
     
-private void subirImagen() {
-    subirImagen.setOnAction(eh -> {
-        FileChooser fc = new FileChooser();
-        fc.setInitialDirectory(new File(System.getProperty("user.dir")));
-        fc.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Imagen", ".png", ".jpeg", "*.jpg"));
-        File selectedFile = fc.showOpenDialog(null);
+    private void subirImagen() {
+        subirImagen.setOnAction(eh -> {
+            FileChooser fc = new FileChooser();
+            fc.setInitialDirectory(new File(System.getProperty("user.dir")));
+            fc.getExtensionFilters().addAll(
+                    new FileChooser.ExtensionFilter("Imagen", ".png", ".jpeg", "*.jpg"));
+            File selectedFile = fc.showOpenDialog(null);
 
-        if (selectedFile != null) {
-            String imageName = selectedFile.getName();
-            try {
-                File destination = new File(imageName); 
-                Files.copy(selectedFile.toPath(), destination.toPath(), StandardCopyOption.REPLACE_EXISTING);
-                imagenRuta.setText(imageName);
-            } catch (IOException ex) {
-                System.out.println("Error al copiar la imagen: " + ex.getMessage());
+            if (selectedFile != null) {
+                String imageName = selectedFile.getName();
+                try {
+                    File destination = new File(imageName); 
+                    Files.copy(selectedFile.toPath(), destination.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                    imagenRuta.setText(imageName);
+                } catch (IOException ex) {
+                    System.out.println("Error al copiar la imagen: " + ex.getMessage());
+                }
+            } else {
+                System.out.println("Archivo no válido");
             }
-        } else {
-            System.out.println("Archivo no válido");
-        }
-    });
-}
+        });
+    }
 
+    public static boolean esEntero(String cadena) {
+    try {
+        cadena = cadena.trim();
+        Integer.valueOf(cadena); 
+        return true; 
+    } catch (NumberFormatException e) {
+        return false; 
+    }
+    }
 }
