@@ -72,25 +72,16 @@ public class IngresoController implements Serializable{
         }
         
         if (correos.contains(usuario)&& contraseñas.contains(contraseña)){
-            mostrarAlertaC();
             App.setRoot("menu");
             usuarioing(usuarios);
-        } else 
-            mostrarAlertaI();
+        } else {
+            Alert alerta = new Alert(AlertType.ERROR);
+            alerta.setContentText("Usuario y/o contraseña incorrecta");
+            alerta.show();
+        }
+                
     }
-  
-    private void mostrarAlertaC(){
-        Alert alerta= new Alert(AlertType.INFORMATION);
-        alerta.setContentText("Usuario correcto");
-        alerta.show();
-    }    
-    
-    private void mostrarAlertaI(){
-        Alert alerta= new Alert(AlertType.ERROR);
-        alerta.setContentText("Usuario incorrecto");
-        alerta.show();
-    }    
-    
+
     private void usuarioing(ArrayList<Usuario> listau){
         for (Usuario usuario:listau){
             if (usuario.getCorreo_electronico().equals(txtfieldUsuario.getText()))
