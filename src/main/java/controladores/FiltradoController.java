@@ -118,6 +118,18 @@ public class FiltradoController implements Initializable , Serializable{
         colorColumn.setCellValueFactory(new PropertyValueFactory<>("color"));
         tipoCombColumn.setCellValueFactory(new PropertyValueFactory<>("tipo_comb"));
         precioColumn.setCellValueFactory(new PropertyValueFactory<>("precio"));
+
+            if (BuscarController.tipoVehiculo.equals("Auto")) {
+                TableColumn<Vehiculo, String> vidriosColumn = new TableColumn<>("Vidrios");
+                TableColumn<Vehiculo, String> transmisionColumn = new TableColumn<>("Transmision");
+                vidriosColumn.setCellValueFactory(new PropertyValueFactory<>("vidrios"));
+                transmisionColumn.setCellValueFactory(new PropertyValueFactory<>("transmision"));
+                tabla.getColumns().addAll(vidriosColumn, transmisionColumn);
+            } else if (BuscarController.tipoVehiculo.equals("Camioneta")) {
+                TableColumn<Vehiculo, String> traccionColumn = new TableColumn<>("Traccion");
+                traccionColumn.setCellValueFactory(new PropertyValueFactory<>("traccion"));
+                tabla.getColumns().add(traccionColumn);
+            }
     }
        
     public ArrayList<Vehiculo> filtrar(){
