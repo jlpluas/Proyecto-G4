@@ -180,6 +180,7 @@ public class RegistrarVController implements Initializable, Serializable {
     @FXML
 private void registrar(ActionEvent event) throws IOException {
 
+<<<<<<< HEAD
     if (Vbox_tipoV.getSelectionModel().getSelectedItem() == null) {
         Alert alerta = new Alert(AlertType.ERROR);
         alerta.setContentText("Seleccione un tipo de vehículo");
@@ -193,6 +194,45 @@ private void registrar(ActionEvent event) throws IOException {
             TextField textField = (TextField) v2.getChildren().get(i);
             if (textField.getText().isEmpty()) {
                 camposVacios = true;
+=======
+        if (Vbox_tipoV.getSelectionModel().getSelectedItem() == null) {
+            Alert alerta = new Alert(AlertType.ERROR);
+            alerta.setContentText("Seeleccione un tipo de vehiculo");
+            alerta.show();
+        }
+        try{
+            if (datosIngresados.contains("\\")) {
+                Alert alerta = new Alert(AlertType.ERROR);
+                alerta.setContentText("Debe llenar todos los campos");
+                alerta.show();
+                
+            } else{
+                guardarDatos();
+                try {
+
+                    ArrayList<Vehiculo> vehiculos = Vehiculo.readListFromFileSer("vehiculos.ser");
+                    ArrayList<String> lstplacas = new ArrayList<>();
+                    for (Vehiculo v : vehiculos) {
+                        lstplacas.add(v.getPlaca());
+                    }
+
+                    if (lstplacas.contains(vehiculoActual.getPlaca())) {
+                        Alert alerta = new Alert(AlertType.ERROR);
+                        alerta.setContentText("Vehiculo ya registrado");
+                        alerta.show();            
+                    } else {
+                        vehiculos.add(vehiculoActual);
+                        Vehiculo.saveListToFileSer("vehiculos.ser", vehiculos);
+                        App.setRoot("menu");
+                    }
+                    
+                    datosIngresados.clear();
+                } catch (IndexOutOfBoundsException rt) {
+
+                } catch (NullPointerException n) {
+
+                }
+>>>>>>> 93479ffbfaf9af45586f5a9fe21557e9c0d7b332
             }
         }
 
