@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package controladores;
 
 import ec.edu.espol.proyectog4.App;
@@ -68,6 +64,7 @@ public class RegistrarVController implements Initializable, Serializable {
 
     }    
     
+    
     @FXML
     private void filtrar(ActionEvent event) {
         v1.getChildren().clear();
@@ -75,21 +72,21 @@ public class RegistrarVController implements Initializable, Serializable {
         datosIngresados.clear();
 
         String opcion = Vbox_tipoV.getSelectionModel().getSelectedItem();
-        
+
         if (opcion.equals("Auto")) {
             ingresarAuto();
-            vehiculoActual = new Auto(); 
+            vehiculoActual = new Auto();
         } else if (opcion.equals("Camioneta")) {
             ingresarCamioneta();
-            vehiculoActual = new Camioneta(); 
+            vehiculoActual = new Camioneta();
         } else if (opcion.equals("Motocicleta")) {
             ingresarMotocicleta();
-            vehiculoActual = new Vehiculo(); 
+            vehiculoActual = new Vehiculo();
         }
 
     }
-    
-    public void ingresarAuto(){
+
+    public void ingresarAuto() {
 
         v1.getChildren().addAll(new Label("Placa: "), new Label("Marca: "), new Label("Modelo: "), new Label("Tipo de Motor: "), new Label("Año: "), new Label("Recorrido: "), new Label("Color: "), new Label("Tipo de Combustible: "), new Label("Precio: "), new Label("Vidrios: "), new Label("Transmision: "));
         v1.getChildren().addAll(subirImagen);
@@ -154,6 +151,7 @@ public class RegistrarVController implements Initializable, Serializable {
 
         }
 
+        //if (!datosIngresados.contains(null)){
             vehiculoActual.setPlaca(datosIngresados.get(0));
             vehiculoActual.setMarca(datosIngresados.get(1));
             vehiculoActual.setModelo(datosIngresados.get(2));
@@ -185,52 +183,75 @@ public class RegistrarVController implements Initializable, Serializable {
 
             if (datosIngresados.size() == 10) {
                 vehiculoActual.setImagen(datosIngresados.get(9));
-                Vehiculo moto = vehiculoActual;
-            }
-            if (datosIngresados.size() == 12) {
-                Auto auto = (Auto) vehiculoActual;
-                auto.setVidrios(datosIngresados.get(9));
-                auto.setTransmision(datosIngresados.get(10));
-                vehiculoActual.setImagen(datosIngresados.get(11));
+            Vehiculo moto = vehiculoActual;
+        }
+        if (datosIngresados.size() == 12) {
+            Auto auto = (Auto) vehiculoActual;
+            auto.setVidrios(datosIngresados.get(9));
+            auto.setTransmision(datosIngresados.get(10));
+            vehiculoActual.setImagen(datosIngresados.get(11));
 
-            }
-            if (datosIngresados.size() == 11) {
-                Camioneta camioneta = (Camioneta) vehiculoActual;
-                camioneta.setTraccion(datosIngresados.get(9));
-                vehiculoActual.setImagen(datosIngresados.get(10));
-            }
-        
+        }
+        if (datosIngresados.size() == 11) {
+            Camioneta camioneta = (Camioneta) vehiculoActual;
+            camioneta.setTraccion(datosIngresados.get(9));
+            vehiculoActual.setImagen(datosIngresados.get(10));
+        }
 
-               
+
     }
-   
+
     @FXML
     private void registrar(ActionEvent event) throws IOException {
-        
-        try{
-            guardarDatos();
-            ArrayList<Vehiculo> vehiculos = Vehiculo.readListFromFileSer("vehiculos.ser");
-            ArrayList<String> lstplacas = new ArrayList<>();
-            for (Vehiculo v : vehiculos) {
-                lstplacas.add(v.getPlaca());
-            }
 
-            if (lstplacas.contains(vehiculoActual.getPlaca())) {
-                Alert alerta = new Alert(AlertType.ERROR);
-                alerta.setContentText("Vehiculo ya registrado");
-                alerta.show();
-//            App.setRoot("registrarV");            
-            } else {
-                vehiculos.add(vehiculoActual);
-                Vehiculo.saveListToFileSer("vehiculos.ser", vehiculos);
-                App.setRoot("menu");
-            }
-            datosIngresados.clear();
-        } catch(IndexOutOfBoundsException rt){
+        if (Vbox_tipoV.getSelectionModel().getSelectedItem() == null) {
             Alert alerta = new Alert(AlertType.ERROR);
-            alerta.setContentText("Debe llenar todos los campos");
-            alerta.show();           
-        } 
+            alerta.setContentText("Seeleccione un tipo de vehiculo");
+            alerta.show();
+        }
+        try{
+            if (datosIngresados.contains("")) {
+                Alert alerta = new Alert(AlertType.ERROR);
+                alerta.setContentText("Deebe llenar todos los campos");
+                alerta.show();
+                
+            } else if (!datosIngresados.contains("")) {
+                guardarDatos();
+                try {
+
+                    ArrayList<Vehiculo> vehiculos = Vehiculo.readListFromFileSer("vehiculos.ser");
+                    ArrayList<String> lstplacas = new ArrayList<>();
+                    for (Vehiculo v : vehiculos) {
+                        lstplacas.add(v.getPlaca());
+                    }
+
+                    if (lstplacas.contains(vehiculoActual.getPlaca())) {
+                        Alert alerta = new Alert(AlertType.ERROR);
+                        alerta.setContentText("Vehiculo ya registrado");
+                        alerta.show();            
+                    } else {
+                        vehiculos.add(vehiculoActual);
+                        Vehiculo.saveListToFileSer("vehiculos.ser", vehiculos);
+                        App.setRoot("menu");
+                    }
+                    
+                    datosIngresados.clear();
+                } catch (IndexOutOfBoundsException rt) {
+
+                } catch (NullPointerException n) {
+
+                }
+            }
+        }catch(IndexOutOfBoundsException i){
+            System.out.println(i.getMessage());
+        }
+            
+
+
+            
+        
+        
+        
         
 
     }
@@ -247,7 +268,7 @@ private void subirImagen() {
         FileChooser fc = new FileChooser();
         fc.setInitialDirectory(new File(System.getProperty("user.dir")));
         fc.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Imagen", "*.png", "*.jpeg", "*.jpg"));
+                new FileChooser.ExtensionFilter("Imagen", ".png", ".jpeg", "*.jpg"));
         File selectedFile = fc.showOpenDialog(null);
 
         if (selectedFile != null) {
