@@ -210,12 +210,12 @@ public class RegistrarVController implements Initializable, Serializable {
             alerta.show();
         }
         try{
-            if (datosIngresados.contains("")) {
+            if (datosIngresados.contains("\\")) {
                 Alert alerta = new Alert(AlertType.ERROR);
-                alerta.setContentText("Deebe llenar todos los campos");
+                alerta.setContentText("Debe llenar todos los campos");
                 alerta.show();
                 
-            } else if (!datosIngresados.contains("")) {
+            } else{
                 guardarDatos();
                 try {
 
